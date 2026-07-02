@@ -67,6 +67,6 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Remnants-of-the-Sins.slnx",
+    "dotnet.defaultSolution": "Remnants of the Sins.slnx",
     "dotnet.enableWorkspaceBasedDevelopment": false
 }
