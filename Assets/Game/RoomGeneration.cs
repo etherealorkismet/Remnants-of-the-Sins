@@ -4,11 +4,15 @@ using System.Collections.Generic;
 public class RoomGeneration : MonoBehaviour
 {
     public GameObject startroom;
+    //Dungeon Settings
     public Vector2 gridsize = new Vector2(5,5);
     public int minimumrooms = 5;
     public int maximumrooms = 10;
-    public int currentrooms = 0;
-    //to ensure unique locations of each room
+    public int currentrooms = 0; 
+    //
+
+
+    //stores which room is in what grid position
     public HashSet<Vector2> occupiedpositions = new HashSet<Vector2>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
