@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class RoomNode : MonoBehaviour
 {
@@ -9,8 +10,9 @@ public class RoomNode : MonoBehaviour
     public Vector2 gridsize;
 
     public RoomType roomtype = RoomType.Normal;
+    public int depth = 0;
 
-    int[] exits = new int[4] { 0, 0, 0, 0 };
+    public bool[] exits = new bool[4];
 
     Vector2[] directions =
     {
@@ -24,54 +26,112 @@ public class RoomNode : MonoBehaviour
     {
         DungeonManager roomgenscript = levelmang.GetComponent<DungeonManager>();
 
-        // Move this RoomNode to its correct position
         transform.position = gridposition * 5;
 
-        // Generate random exits
+        // Randomly generate exits
         for (int i = 0; i < 4; i++)
         {
-            exits[i] = Random.Range(0, 2);
+            exits[i] = Random.Range(0, 4) == 1;
         }
 
-        // Don't generate back towards the parent
+        // Direction of the parent room
+        Vector2 parentdir = Vector2.zero;
+
         if (parent != null)
         {
-            Vector2 parentdir = parent.gridposition - gridposition;
+            parentdir = parent.gridposition - gridposition;
 
+            // Always keep the doorway back to the parent open
             for (int i = 0; i < 4; i++)
             {
                 if (directions[i] == parentdir)
                 {
-                    exits[i] = 0;
+                    exits[i] = true;
                     break;
                 }
             }
         }
 
-        // Generate neighbouring rooms
+        // Find all valid directions
+        List<int> validDirections = new List<int>();
+
+        int openExitCount = 0;
+
         for (int i = 0; i < 4; i++)
         {
-            if (exits[i] == 1)
-            {
-                Vector2 newpos = gridposition + directions[i];
+            //ignore the parent direction
+            if (parent != null && directions[i] == parentdir)
+                continue;
 
-                if (roomgenscript.cangenerateroom(newpos))
+            Vector2 newPos = gridposition + directions[i];
+
+            if (roomgenscript.cangenerateroom(newPos))
+            {
+                validDirections.Add(i);
+
+                if (exits[i])
                 {
-                    generatenewroom(newpos);
+                    openExitCount++;
+                }
+            }
+        }
+
+        //force exits open if havent reached minimum room count
+        if (roomgenscript.currentrooms < roomgenscript.minimumrooms)
+        {
+            int minimumExits;
+
+            if (roomtype == RoomType.Start)
+            {
+                minimumExits = roomgenscript.startroomminimumexits;
+            }
+            else
+            {
+                minimumExits = roomgenscript.normalroomminimumexits;
+            }
+
+            while (openExitCount < minimumExits && validDirections.Count > 0)
+            {
+                int randomIndex = Random.Range(0, validDirections.Count);
+                int direction = validDirections[randomIndex];
+
+                if (!exits[direction])
+                {
+                    exits[direction] = true;
+                    openExitCount++;
+                }
+
+                validDirections.RemoveAt(randomIndex);
+            }
+        }
+
+        //generate neighbouring rooms
+        for (int i = 0; i < 4; i++)
+        {
+            //dont gen back into the parent
+            if (parent != null && directions[i] == parentdir)
+                continue;
+
+            if (exits[i])
+            {
+                Vector2 newPos = gridposition + directions[i];
+
+                if (roomgenscript.cangenerateroom(newPos))
+                {
+                    generatenewroom(newPos);
                 }
                 else
                 {
-                    exits[i] = 0;
+                    exits[i] = false;
                 }
             }
         }
     }
 
-    void generatenewroom(Vector2 newpos)
+    void generatenewroom(Vector2 newPos)
     {
         DungeonManager roomgenscript = levelmang.GetComponent<DungeonManager>();
 
-        // Instantiate a new RoomNode using the manager's prefab
         GameObject newroom = Instantiate(roomgenscript.roomnodeprefab);
         newroom.transform.parent = levelmang.transform;
 
@@ -79,14 +139,13 @@ public class RoomNode : MonoBehaviour
 
         roomscript.levelmang = levelmang;
         roomscript.parent = this;
-        roomscript.gridposition = newpos;
+        roomscript.gridposition = newPos;
         roomscript.gridsize = gridsize;
         roomscript.roomtype = RoomType.Normal;
+        roomscript.depth = this.depth + 1;
 
-        // Register the room
         roomgenscript.newroom(roomscript);
 
-        // Continue generation from the new room
         roomscript.Generate();
     }
 }

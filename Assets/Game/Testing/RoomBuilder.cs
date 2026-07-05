@@ -1,34 +1,61 @@
 using UnityEngine;
+using System.Collections.Generic;
+
 public class RoomBuilder : MonoBehaviour
 {
-    public GameObject normalroom;
-    public GameObject treasureroom;
-    public GameObject bossroom;
-    public GameObject startroom;
+    public GameObject baseroom;
 
-    public void Build(RoomType roomtype)
+    public void BuildDungeon(Dictionary<Vector2, RoomNode> rooms)
     {
-        GameObject prefab = null;
+        foreach (RoomNode node in rooms.Values)
+        {
+            Build(node);
+        }
+    }
 
-        switch(roomtype)
+    public void Build(RoomNode node)
+    {
+        GameObject room = Instantiate(
+            baseroom,
+            node.transform.position,
+            Quaternion.identity,
+            node.transform);
+
+        RoomVisual visual = room.GetComponent<RoomVisual>();
+
+        // LEFT
+        visual.leftDoor.SetActive(node.exits[0]);
+        visual.leftWall.SetActive(!node.exits[0]);
+
+        // UP
+        visual.upDoor.SetActive(node.exits[1]);
+        visual.upWall.SetActive(!node.exits[1]);
+
+        // RIGHT
+        visual.rightDoor.SetActive(node.exits[2]);
+        visual.rightWall.SetActive(!node.exits[2]);
+
+        // DOWN
+        visual.downDoor.SetActive(node.exits[3]);
+        visual.downWall.SetActive(!node.exits[3]);
+
+        switch (node.roomtype) //room creation
         {
             case RoomType.Start:
-                prefab = startroom;
+                Instantiate(visual.playerPrefab, visual.playerSpawn.position, Quaternion.identity);
                 break;
 
             case RoomType.Normal:
-                prefab = normalroom;
+                visual.SpawnEnemies();
                 break;
 
             case RoomType.Treasure:
-                prefab = treasureroom;
+                Instantiate(visual.chestPrefab, visual.treasureSpawn.position, Quaternion.identity);
                 break;
 
             case RoomType.Boss:
-                prefab = bossroom;
+                Instantiate(visual.bossPrefab, visual.bossSpawn.position, Quaternion.identity);
                 break;
         }
-
-        Instantiate(prefab, transform.position, Quaternion.identity, transform);
     }
 }

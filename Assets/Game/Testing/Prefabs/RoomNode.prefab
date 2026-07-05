@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2939088528780073742}
   - component: {fileID: 7675096732265200531}
   - component: {fileID: 5575116124512594602}
-  - component: {fileID: 1699742864392134479}
   m_Layer: 0
   m_Name: RoomNode
   m_TagString: Untagged
@@ -81,7 +80,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.5707102, g: 0.8724919, b: 0.8962264, a: 1}
@@ -110,20 +109,5 @@ MonoBehaviour:
   gridposition: {x: 0, y: 0}
   gridsize: {x: 0, y: 0}
   roomtype: 1
-  roomnodeprefab: {fileID: 1392194768699090589}
---- !u!114 &1699742864392134479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1392194768699090589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 557a14df93186b7459e977d9d1d6f9ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RoomBuilder
-  normalroom: {fileID: 3789049552389615301, guid: 4d862983532f9894eb685df8777d9007, type: 3}
-  treasureroom: {fileID: 3789049552389615301, guid: 757361d8a9060e74888618a65fa8f891, type: 3}
-  bossroom: {fileID: 3789049552389615301, guid: 327e5c00d57e9b948a5066608c3cf850, type: 3}
-  startroom: {fileID: 3789049552389615301, guid: dc269fda68b0f5141be5017d86f6ba4d, type: 3}
+  depth: 0
+  exits: 00000000

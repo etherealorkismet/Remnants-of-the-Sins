@@ -128,8 +128,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224007871}
-  - component: {fileID: 224007870}
   - component: {fileID: 224007872}
+  - component: {fileID: 224007873}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -137,23 +137,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &224007870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 224007869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf9b01933aec60346bd14e574fad86cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RoomGeneration
-  startroom: {fileID: 3789049552389615301, guid: 4c112fcda32c28a4783eb75d78491ff5, type: 3}
-  gridsize: {x: 5, y: 5}
-  minimumrooms: 5
-  maximumrooms: 10
-  currentrooms: 0
 --- !u!4 &224007871
 Transform:
   m_ObjectHideFlags: 0
@@ -182,6 +165,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCreate
   playersprite: {fileID: 8729042479826370432, guid: b1ea2e079e293de449d24a5b93f7a247, type: 3}
+--- !u!114 &224007873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224007869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81232da2c44897f4dbf833b9c6a60bf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonManager
+  roomnodeprefab: {fileID: 1392194768699090589, guid: d06b01fb5f9ed1640b5a06ae9ae61011, type: 3}
+  gridsize: {x: 5, y: 5}
+  minimumrooms: 5
+  maximumrooms: 10
+  currentrooms: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
