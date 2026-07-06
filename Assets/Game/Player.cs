@@ -10,12 +10,16 @@ public class Player : MonoBehaviour
     public float dashSpeed = 12f;
     public float dashDuration = 0.4f;
     public float dashCooldown = 1f;
-
+    Rigidbody2D rb;
     private Vector2 moveInput;
     private Vector2 lastMoveDirection = Vector2.right; // Default dash direction
     private bool isDashing = false;
     private bool canDash = true;
 
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
     void Update()
     {
         // Don't read movement input while dashing
@@ -49,7 +53,7 @@ public class Player : MonoBehaviour
             }
 
             // Normal movement
-            transform.position += (Vector3)moveInput * moveSpeed * Time.deltaTime;
+            rb.AddForce(moveInput * moveSpeed * Time.deltaTime);
         }
 
         // Dash with Left Shift
@@ -73,7 +77,7 @@ public class Player : MonoBehaviour
             // Ease out
             float currentSpeed = dashSpeed * (1 - t * t);
 
-            transform.position += (Vector3)lastMoveDirection * currentSpeed * Time.deltaTime;
+            rb.AddForce(lastMoveDirection * currentSpeed * Time.deltaTime);
 
             timer += Time.deltaTime;
             yield return null;
