@@ -10,11 +10,15 @@ public class Player : MonoBehaviour
     public float dashSpeed = 12f;
     public float dashDuration = 0.4f;
     public float dashCooldown = 1f;
+
+    [Header("Animator")]//delete this later when done with the testing
+    public Animator animator;
     Rigidbody2D rb;
     private Vector2 moveInput;
-    private Vector2 lastMoveDirection = Vector2.right; // Default dash direction
+    public Vector2 lastMoveDirection = Vector2.right; // Default dash direction
     private bool isDashing = false;
     private bool canDash = true;
+
 
     void Start()
     {
@@ -89,4 +93,5 @@ public class Player : MonoBehaviour
 
         canDash = true;
     }
+
 }

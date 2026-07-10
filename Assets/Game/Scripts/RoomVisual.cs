@@ -16,16 +16,18 @@ public class RoomVisual : MonoBehaviour
 
     [Header("Spawn Points")]
     public Transform playerSpawn;
+    public Transform dummySpawn;
     public Transform bossSpawn;
     public Transform treasureSpawn;
 
     [Header("Prefabs")]
     public GameObject playerPrefab;
+    public GameObject dummyPrefab;
     public GameObject bossPrefab;
     public GameObject chestPrefab;
 
     public void SpawnEnemies()
     {
-        Debug.Log("Spawn enemies here.");
+        //Debug.Log("Spawn enemies here.");
     }
 }

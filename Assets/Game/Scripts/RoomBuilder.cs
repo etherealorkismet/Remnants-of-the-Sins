@@ -43,6 +43,7 @@ public class RoomBuilder : MonoBehaviour
         {
             case RoomType.Start:
                 Instantiate(visual.playerPrefab, visual.playerSpawn.position, Quaternion.identity);
+                Instantiate(visual.dummyPrefab, visual.dummySpawn.position, Quaternion.identity);
                 break;
 
             case RoomType.Normal:
