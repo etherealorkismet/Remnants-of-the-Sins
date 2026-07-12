@@ -9,6 +9,11 @@ public class WeaponDir : MonoBehaviour
     GameObject currentweapon = null;
     public GameObject Weapon; //temp!!!!!!!!!!!!!!!! prefab of the sword
     public GameObject Weapon2; //bow goes here
+
+
+    public GameObject currentWeaponPrefab; // TEMPPPPPPPPPPPPPPPPPP
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -28,10 +33,12 @@ public class WeaponDir : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             ChangeCurrentWeapon(Weapon);
+            currentWeaponPrefab = Weapon; //temp
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             ChangeCurrentWeapon(Weapon2);
+            currentWeaponPrefab = Weapon2; //temp
         }
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -72,5 +79,10 @@ public class WeaponDir : MonoBehaviour
         {
             return false;
         }
+    }
+
+    public bool holdingSpell()
+    {
+        return currentWeaponPrefab == Weapon2;
     }
 }
