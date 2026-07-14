@@ -3,5 +3,7 @@ using UnityEngine;
 //example if i have sword and bow that both use "UseWeapon()", it can get both
 public interface Weapon
 {
-    void Use();
+    bool Use();
+    bool HoldToUseMD();
+    bool HoldToUseMU();
 }

@@ -7,11 +7,11 @@ public class Drawing : MonoBehaviour
 {
     public LineRenderer linerenderer;
 
-    List<Vector2> points;
+    public List<Vector2> points;
 
     public void UpdateLine(Vector2 position)
     {
-        if (points == null)    //if there are no points yet (the start of a drawing, it will create a list then add the first point and its position into the list)
+        if (points.Count == 0)    //if there are no points yet (the start of a drawing, it will create a list then add the first point and its position into the list)
         {
             points = new List<Vector2>();
             SetPoint(position);

@@ -189,5 +189,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponDir
   distance: 0.8
-  Weapon: {fileID: 3025185175787464341, guid: 9855a6c5b79895a45bb6286a9150f0d4, type: 3}
-  Weapon2: {fileID: 6228421204920443735, guid: 8b10d04c46d4b3642b6b49ef1d9d0f81, type: 3}
+  Weapon: {fileID: 6228421204920443735, guid: 8b10d04c46d4b3642b6b49ef1d9d0f81, type: 3}
+  Weapon2: {fileID: 8073785538072078474, guid: 2943ca4927145b74d908c9ed90ff3132, type: 3}
+  currentWeaponPrefab: {fileID: 0}

@@ -100,7 +100,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4064331447984176820}
-  - component: {fileID: 4508567262133314680}
+  - component: {fileID: 4992236377974002725}
   m_Layer: 0
   m_Name: Book
   m_TagString: Untagged
@@ -125,7 +125,7 @@ Transform:
   - {fileID: 1319278196493690144}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4508567262133314680
+--- !u!114 &4992236377974002725
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,9 +134,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8073785538072078474}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85bda048a04d86541912f843a207f757, type: 3}
+  m_Script: {fileID: 11500000, guid: 96cff3f79f8a86840bd777f733ab865c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Spell
+  m_EditorClassIdentifier: Assembly-CSharp::DrawingGenerator
+  linePrefab: {fileID: 1942370888501592341, guid: 3095c88be5f1fcb4c9e8ca2ae8a2a292, type: 3}
+  SpellsText: {fileID: 4900000, guid: d793c24864300744a93c1288e3a23e76, type: 3}
 --- !u!1 &9020341227544333463
 GameObject:
   m_ObjectHideFlags: 0

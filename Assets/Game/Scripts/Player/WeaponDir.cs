@@ -11,7 +11,6 @@ public class WeaponDir : MonoBehaviour
     public GameObject Weapon2; //bow goes here
 
 
-    public GameObject currentWeaponPrefab; // TEMPPPPPPPPPPPPPPPPPP
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -33,16 +32,18 @@ public class WeaponDir : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             ChangeCurrentWeapon(Weapon);
-            currentWeaponPrefab = Weapon; //temp
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             ChangeCurrentWeapon(Weapon2);
-            currentWeaponPrefab = Weapon2; //temp
         }
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Debug.Log(UseWeapon());//temp!!!!!!!!!!!!!!!!
+           UseWeapon();//temp!!!!!!!!!!!!!!!!
+        }
+        if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
+           StopUseWeapon();//temp!!!!!!!!!!!!!!!!
         }
 
     }
@@ -70,19 +71,19 @@ public class WeaponDir : MonoBehaviour
 
     public bool UseWeapon()//attack script
     {
-        try
+        if (currentweapon.GetComponent<Weapon>().Use())
         {
-            currentweapon.GetComponent<Weapon>().Use();
             return true;
         }
-        catch
+        if (currentweapon.GetComponent<Weapon>().HoldToUseMD())
         {
-            return false;
+            return true;
         }
+        return false;
+        
     }
-
-    public bool holdingSpell()
+    public void StopUseWeapon()
     {
-        return currentWeaponPrefab == Weapon2;
+        currentweapon.GetComponent<Weapon>().HoldToUseMU();
     }
 }
