@@ -4,10 +4,10 @@ using System.Collections.Generic;
 public class RoomNode : MonoBehaviour
 {
     public RoomNode parent = null;
-    public GameObject levelmang = null;
+    public GameObject levelMang = null;
 
-    public Vector2 gridposition;
-    public Vector2 gridsize;
+    public Vector2 gridPosition;
+    public Vector2 gridSize;
 
     public RoomType roomtype = RoomType.Normal;
     public int depth = 0;
@@ -24,9 +24,9 @@ public class RoomNode : MonoBehaviour
 
     public void Generate()
     {
-        DungeonManager roomgenscript = levelmang.GetComponent<DungeonManager>();
+        DungeonManager roomGenSC = levelMang.GetComponent<DungeonManager>();
 
-        transform.position = gridposition * 5;
+        transform.position = gridPosition * 15;
 
         // Randomly generate exits
         for (int i = 0; i < 4; i++)
@@ -39,7 +39,7 @@ public class RoomNode : MonoBehaviour
 
         if (parent != null)
         {
-            parentdir = parent.gridposition - gridposition;
+            parentdir = parent.gridPosition - gridPosition;
 
             // Always keep the doorway back to the parent open
             for (int i = 0; i < 4; i++)
@@ -63,9 +63,9 @@ public class RoomNode : MonoBehaviour
             if (parent != null && directions[i] == parentdir)
                 continue;
 
-            Vector2 newPos = gridposition + directions[i];
+            Vector2 newPos = gridPosition + directions[i];
 
-            if (roomgenscript.cangenerateroom(newPos))
+            if (roomGenSC.CanGenerateRoom(newPos))
             {
                 validDirections.Add(i);
 
@@ -77,17 +77,17 @@ public class RoomNode : MonoBehaviour
         }
 
         //force exits open if havent reached minimum room count
-        if (roomgenscript.currentrooms < roomgenscript.minimumrooms)
+        if (roomGenSC.currentRooms < roomGenSC.minimumRooms)
         {
             int minimumExits;
 
             if (roomtype == RoomType.Start)
             {
-                minimumExits = roomgenscript.startroomminimumexits;
+                minimumExits = roomGenSC.startRoomminimumExits;
             }
             else
             {
-                minimumExits = roomgenscript.normalroomminimumexits;
+                minimumExits = roomGenSC.normalRoomminimumExits;
             }
 
             while (openExitCount < minimumExits && validDirections.Count > 0)
@@ -114,11 +114,11 @@ public class RoomNode : MonoBehaviour
 
             if (exits[i])
             {
-                Vector2 newPos = gridposition + directions[i];
+                Vector2 newPos = gridPosition + directions[i];
 
-                if (roomgenscript.cangenerateroom(newPos))
+                if (roomGenSC.CanGenerateRoom(newPos))
                 {
-                    generatenewroom(newPos);
+                    GenerateNewRoom(newPos);
                 }
                 else
                 {
@@ -128,24 +128,24 @@ public class RoomNode : MonoBehaviour
         }
     }
 
-    void generatenewroom(Vector2 newPos)
+    void GenerateNewRoom(Vector2 newPos)
     {
-        DungeonManager roomgenscript = levelmang.GetComponent<DungeonManager>();
+        DungeonManager roomGenSC = levelMang.GetComponent<DungeonManager>();
 
-        GameObject newroom = Instantiate(roomgenscript.roomnodeprefab);
-        newroom.transform.parent = levelmang.transform;
+        GameObject newRoom = Instantiate(roomGenSC.roomnodeprefab);
+        newRoom.transform.parent = levelMang.transform;
 
-        RoomNode roomscript = newroom.GetComponent<RoomNode>();
+        RoomNode roomSC = newRoom.GetComponent<RoomNode>();
 
-        roomscript.levelmang = levelmang;
-        roomscript.parent = this;
-        roomscript.gridposition = newPos;
-        roomscript.gridsize = gridsize;
-        roomscript.roomtype = RoomType.Normal;
-        roomscript.depth = this.depth + 1;
+        roomSC.levelMang = levelMang;
+        roomSC.parent = this;
+        roomSC.gridPosition = newPos;
+        roomSC.gridSize = gridSize;
+        roomSC.roomtype = RoomType.Normal;
+        roomSC.depth = this.depth + 1;
 
-        roomgenscript.newroom(roomscript);
+        roomGenSC.NewRoom(roomSC);
 
-        roomscript.Generate();
+        roomSC.Generate();
     }
 }

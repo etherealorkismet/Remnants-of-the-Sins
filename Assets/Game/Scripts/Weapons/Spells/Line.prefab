@@ -156,3 +156,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Drawing
   linerenderer: {fileID: 8904240170947263244}
+  points: []

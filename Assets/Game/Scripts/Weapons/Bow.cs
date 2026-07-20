@@ -4,6 +4,10 @@ public class Bow : MonoBehaviour, Weapon
 {
     bool InUse;
     float holdtime;
+    public Transform projSpawner;
+    public float holdThreshold = 500f;
+    public GameObject projectile;
+    
     void Update()
     {
         if (!InUse)
@@ -29,6 +33,10 @@ public class Bow : MonoBehaviour, Weapon
 
     public bool HoldToUseMU()
     {
+        if (holdtime > holdThreshold)
+        {
+            Instantiate(projectile, projSpawner.position, projSpawner.rotation);
+        }
         InUse = false;
         return false;
     }

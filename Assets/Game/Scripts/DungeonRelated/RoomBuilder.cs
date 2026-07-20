@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class RoomBuilder : MonoBehaviour
 {
-    public GameObject baseroom;
+    public GameObject baseRoom;
 
     public void BuildDungeon(Dictionary<Vector2, RoomNode> rooms)
     {
@@ -16,7 +16,7 @@ public class RoomBuilder : MonoBehaviour
     public void Build(RoomNode node)
     {
         GameObject room = Instantiate(
-            baseroom,
+            baseRoom,
             node.transform.position,
             Quaternion.identity,
             node.transform);

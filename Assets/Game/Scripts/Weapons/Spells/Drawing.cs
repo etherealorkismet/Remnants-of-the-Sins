@@ -2,33 +2,31 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
+using UnityEngine.UI.Extensions;
 
 public class Drawing : MonoBehaviour
 {
-    public LineRenderer linerenderer;
+    public UILineRenderer line;
 
-    public List<Vector2> points;
+    public List<Vector2> points = new List<Vector2>();
 
     public void UpdateLine(Vector2 position)
     {
-        if (points.Count == 0)    //if there are no points yet (the start of a drawing, it will create a list then add the first point and its position into the list)
+        if (points.Count == 0)
         {
-            points = new List<Vector2>();
-            SetPoint(position);
+            AddPoint(position);
             return;
         }
 
-        if (Vector2.Distance(points.Last(), position) > .1f) //checks the distance between the two points, if its less than .1, it is not a new point yet.
+        if (Vector2.Distance(points[points.Count - 1], position) > 5f)
         {
-            SetPoint(position);
+            AddPoint(position);
         }
     }
 
-    void SetPoint(Vector2 point)
+    void AddPoint(Vector2 point)
     {
         points.Add(point);
-
-        linerenderer.positionCount = points.Count;
-        linerenderer.SetPosition(points.Count - 1, point);
+        line.Points = points.ToArray();
     }
 }

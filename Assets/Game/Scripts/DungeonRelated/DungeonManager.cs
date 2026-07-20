@@ -7,16 +7,16 @@ public class DungeonManager : MonoBehaviour
     public GameObject roomnodeprefab;
 
     [Header("Dungeon Settings")]
-    public Vector2 gridsize = new Vector2(5, 5);
+    public Vector2 gridSize = new Vector2(5, 5);
 
-    public int minimumrooms = 5;
-    public int maximumrooms = 15;
-    public int currentrooms = 0;
+    public int minimumRooms = 5;
+    public int maximumRooms = 15;
+    public int currentRooms = 0;
 
     [Header("Generation Settings")]
-    public int startroomminimumexits = 2;
-    public int normalroomminimumexits = 1;
-    public RoomBuilder roombuilder;
+    public int startRoomminimumExits = 2;
+    public int normalRoomminimumExits = 1;
+    public RoomBuilder roomBuilderSC;
     private float threshold = 0;
 
     // Every room in the dungeon
@@ -24,7 +24,7 @@ public class DungeonManager : MonoBehaviour
 
     void Awake()
     {
-        roombuilder = GetComponent<RoomBuilder>();
+        roomBuilderSC = GetComponent<RoomBuilder>();
 
         // Create the starting RoomNode
         GameObject startobject = Instantiate(roomnodeprefab);
@@ -32,14 +32,14 @@ public class DungeonManager : MonoBehaviour
 
         RoomNode startnode = startobject.GetComponent<RoomNode>();
 
-        startnode.gridposition = Vector2.zero;
-        startnode.gridsize = gridsize;
-        startnode.levelmang = gameObject;
+        startnode.gridPosition = Vector2.zero;
+        startnode.gridSize = gridSize;
+        startnode.levelMang = gameObject;
         startnode.parent = null;
         startnode.roomtype = RoomType.Start;
         startnode.depth = 0;
 
-        newroom(startnode);
+        NewRoom(startnode);
 
         //generate the dungeon
         startnode.Generate();
@@ -47,21 +47,21 @@ public class DungeonManager : MonoBehaviour
         //assigning room types
         AssignRoomTypes();
 
-        roombuilder.BuildDungeon(rooms);
+        roomBuilderSC.BuildDungeon(rooms);
     }
     
-    public void newroom(RoomNode room)
+    public void NewRoom(RoomNode room)
     {
-        rooms.Add(room.gridposition, room);//add room into dictionary storing the room and its position
-        currentrooms++; //rooms  plus one la
+        rooms.Add(room.gridPosition, room);//add room into dictionary storing the room and its position
+        currentRooms++; //rooms  plus one la
     }
 
-    public bool cangenerateroom(Vector2 position)
+    public bool CanGenerateRoom(Vector2 position)
         {
-            float halfWidth = Mathf.Floor(gridsize.x / 2);
-            float halfHeight = Mathf.Floor(gridsize.y / 2);
+            float halfWidth = Mathf.Floor(gridSize.x / 2);
+            float halfHeight = Mathf.Floor(gridSize.y / 2);
 
-            return currentrooms < maximumrooms &&
+            return currentRooms < maximumRooms &&
                 !rooms.ContainsKey(position) &&
                 position.x >= -halfWidth &&
                 position.x <= halfWidth &&
@@ -73,7 +73,7 @@ public class DungeonManager : MonoBehaviour
     {
         //find deepest room
         RoomNode bossRoom = null;
-        threshold = maximumrooms * 0.85f;
+        threshold = maximumRooms * 0.85f;
         
         foreach (RoomNode room in rooms.Values)
         {
@@ -108,7 +108,7 @@ public class DungeonManager : MonoBehaviour
             int random = Random.Range(0, normalRooms.Count);
             normalRooms[random].roomtype = RoomType.Treasure;
 
-            if (currentrooms >= threshold && normalRooms.Count > 1)//if more than 85% of maximum rooms, generate an extra treasure room
+            if (currentRooms >= threshold && normalRooms.Count > 1)//if more than 85% of maximum rooms, generate an extra treasure room
             {
                 normalRooms.RemoveAt(random); //remove the treasure room from the list so it cant pick the same room to be the treasure room
 

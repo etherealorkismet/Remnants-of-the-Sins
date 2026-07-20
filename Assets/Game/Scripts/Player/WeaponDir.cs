@@ -4,9 +4,9 @@ using System;
 public class WeaponDir : MonoBehaviour
 {
     Vector2 direction;
-    Player playerscript;
+    Playermovement playerMovementSC;
     public float distance = 0.8f;
-    GameObject currentweapon = null;
+    GameObject currentWeapon = null;
     public GameObject Weapon; //temp!!!!!!!!!!!!!!!! prefab of the sword
     public GameObject Weapon2; //bow goes here
 
@@ -16,13 +16,14 @@ public class WeaponDir : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        playerscript = GetComponent<Player>();   
+        playerMovementSC = GetComponent<Playermovement>();   
+        ChangeCurrentWeapon(Weapon);
     }
 
     // Update is called once per frame
     void Update()
     {   
-        if(currentweapon != null)//move the weapon
+        if(currentWeapon != null)//move the weapon
         {
             WeaponPos();
         }
@@ -39,11 +40,11 @@ public class WeaponDir : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-           UseWeapon();//temp!!!!!!!!!!!!!!!!
+            UseWeapon();//temp!!!!!!!!!!!!!!!!
         }
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
-           StopUseWeapon();//temp!!!!!!!!!!!!!!!!
+            StopUseWeapon();//temp!!!!!!!!!!!!!!!!
         }
 
     }
@@ -52,38 +53,39 @@ public class WeaponDir : MonoBehaviour
     {
         RemoveOldWeapon();
         GameObject weapon = GameObject.Instantiate(Weapon,this.transform);//temp!!!!!!!!!!!!!!!! create teh weapon (sword)
-        currentweapon = weapon;
+        currentWeapon = weapon;
     }
     
     void RemoveOldWeapon()
     {
-        Destroy(currentweapon);
+        Destroy(currentWeapon);
     }
 
     void WeaponPos()
     {
-        direction = playerscript.lastMoveDirection;
+        direction = playerMovementSC.lastMoveDirection;
         float angle = (float)(Math.Atan2(direction.y, direction.x) * (180f/Math.PI));
 
-        currentweapon.transform.localPosition = direction.normalized * distance;
-        currentweapon.transform.rotation = Quaternion.Euler(0,0,angle);
+        currentWeapon.transform.localPosition = direction.normalized * distance;
+        currentWeapon.transform.rotation = Quaternion.Euler(0,0,angle);
     }
 
     public bool UseWeapon()//attack script
     {
-        if (currentweapon.GetComponent<Weapon>().Use())
+        if (currentWeapon.GetComponent<Weapon>().Use())
         {
             return true;
         }
-        if (currentweapon.GetComponent<Weapon>().HoldToUseMD())
+        if (currentWeapon.GetComponent<Weapon>().HoldToUseMD())
         {
             return true;
         }
         return false;
         
     }
+    
     public void StopUseWeapon()
     {
-        currentweapon.GetComponent<Weapon>().HoldToUseMU();
+        currentWeapon.GetComponent<Weapon>().HoldToUseMU();
     }
 }

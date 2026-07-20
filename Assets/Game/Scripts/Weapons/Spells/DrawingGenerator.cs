@@ -6,28 +6,34 @@ using System;
 
 public class DrawingGenerator : MonoBehaviour , Weapon //spell cs
 {
-
-    public GameObject linePrefab;
-    //public Canvas canvas;
     public GameObject Line;
     Drawing activeLine;
-    
-    WeaponDir weaponmang;
     public TextAsset SpellsText;
 
-    void Start()
+    void Awake()
     {
-
+        GameObject spellLine = GameObject.Find("SpellLine");
+        activeLine = spellLine.GetComponent<Drawing>();
     }
 
     void Update()
     {
-        if (activeLine != null) //get mouse position
-            {
-                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                activeLine.UpdateLine(mousePos);
-            } 
-        
+        if (Input.GetMouseButton(0))
+        {
+            
+            RectTransform canvasRect = activeLine.GetComponentInParent<Canvas>().GetComponent<RectTransform>();
+
+            Vector2 localPoint;
+            //make the points relative to the screen size
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                canvasRect,
+                Input.mousePosition,
+                null,
+                out localPoint
+            );
+
+            activeLine.UpdateLine(localPoint);
+        }
     }
     public bool Use()
     {
@@ -35,22 +41,29 @@ public class DrawingGenerator : MonoBehaviour , Weapon //spell cs
     }
     public bool HoldToUseMD()
     {
-        if(activeLine != null)
+        if (activeLine == null)
         {
-            activeLine = null;
-            Destroy(Line);
+            return false;
         }
-        Line = Instantiate(linePrefab,this.transform,true);
-        activeLine = Line.GetComponent<Drawing>();
+
+        if (activeLine.line == null)
+        {
+            return false;
+        }
+
+        activeLine.points.Clear();
+        activeLine.line.Points = System.Array.Empty<Vector2>();
+
         return true;
     }
 
     public bool HoldToUseMU()
     {
-        Debug.Log(DetectSpell()); // return spell name
-        //CastSpell(DetectSpell())
-        activeLine = null;
-        Destroy(Line);
+        Debug.Log(DetectSpell());
+
+        activeLine.points.Clear();
+        activeLine.line.Points = System.Array.Empty<Vector2>();
+
         return true;
     }
     string DetectSpell()

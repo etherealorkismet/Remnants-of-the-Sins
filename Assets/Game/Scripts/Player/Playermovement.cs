@@ -1,11 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
-public class Player : MonoBehaviour
+public class Playermovement : MonoBehaviour
 {
-    [Header("Movement")]
-    public float moveSpeed = 5f;
-
+    PlayerStats playerStatsSC;
     [Header("Dash")]
     public float dashSpeed = 12f;
     public float dashDuration = 0.4f;
@@ -14,7 +12,7 @@ public class Player : MonoBehaviour
     [Header("Animator")]//delete this later when done with the testing
     public Animator animator;
     Rigidbody2D rb;
-    private Vector2 moveInput;
+    public Vector2 moveInput;
     public Vector2 lastMoveDirection = Vector2.right; // Default dash direction
     private bool isDashing = false;
     private bool canDash = true;
@@ -22,6 +20,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        playerStatsSC = GetComponent<PlayerStats>();
         rb = GetComponent<Rigidbody2D>();
     }
     void Update()
@@ -57,7 +56,7 @@ public class Player : MonoBehaviour
             }
 
             // Normal movement
-            rb.AddForce(moveInput * moveSpeed * Time.deltaTime);
+            rb.AddForce(moveInput * playerStatsSC.speed * Time.deltaTime);
         }
 
         // Dash with Left Shift
@@ -93,5 +92,4 @@ public class Player : MonoBehaviour
 
         canDash = true;
     }
-
 }
