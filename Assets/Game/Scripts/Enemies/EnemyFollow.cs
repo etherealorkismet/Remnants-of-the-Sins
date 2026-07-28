@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class EnemyFollow : MonoBehaviour
 {
-    public GameObject player;
+    GameObject player;
     EnemyStats enemyStatsSC;
     float speed;
     public float distanceThreshold = 4f;

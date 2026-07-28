@@ -1,28 +1,30 @@
 using UnityEngine;
 using System;
+using Unity.VisualScripting;
 
 public class WeaponDir : MonoBehaviour
 {
     Vector2 direction;
     Playermovement playerMovementSC;
     public float distance = 0.8f;
-    GameObject currentWeapon = null;
-    public GameObject Weapon; //temp!!!!!!!!!!!!!!!! prefab of the sword
-    public GameObject Weapon2; //bow goes here
+    public GameObject currentWeapon = null;
+    public GameObject WeaponSlot1; //temp!!!!!!!!!!!!!!!! prefab of the sword
+    public GameObject WeaponSlot2; //bow goes here
 
-
+    
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         playerMovementSC = GetComponent<Playermovement>();   
-        ChangeCurrentWeapon(Weapon);
+        ChangeCurrentWeapon(WeaponSlot1);
     }
 
     // Update is called once per frame
     void Update()
     {   
+        
         if(currentWeapon != null)//move the weapon
         {
             WeaponPos();
@@ -32,11 +34,11 @@ public class WeaponDir : MonoBehaviour
         //testing
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            ChangeCurrentWeapon(Weapon);
+            ChangeCurrentWeapon(WeaponSlot1);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            ChangeCurrentWeapon(Weapon2);
+            ChangeCurrentWeapon(WeaponSlot2);
         }
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -51,9 +53,18 @@ public class WeaponDir : MonoBehaviour
 
     public void ChangeCurrentWeapon(GameObject Weapon)
     {
-        RemoveOldWeapon();
-        GameObject weapon = GameObject.Instantiate(Weapon,this.transform);//temp!!!!!!!!!!!!!!!! create teh weapon (sword)
-        currentWeapon = weapon;
+        if(currentWeapon == null)
+        {
+            currentWeapon = GameObject.Instantiate(Weapon,this.transform);//temp!!!!!!!!!!!!!!!! create teh weapon (sword)
+        }
+        if(currentWeapon.tag != Weapon.tag)
+        {
+            Debug.Log("wiaubda");
+            RemoveOldWeapon();
+            GameObject weapon = GameObject.Instantiate(Weapon,this.transform);//temp!!!!!!!!!!!!!!!! create teh weapon (sword)
+            currentWeapon = weapon;
+            WeaponPos();
+        }
     }
     
     void RemoveOldWeapon()
@@ -88,4 +99,6 @@ public class WeaponDir : MonoBehaviour
     {
         currentWeapon.GetComponent<Weapon>().HoldToUseMU();
     }
+
+
 }
