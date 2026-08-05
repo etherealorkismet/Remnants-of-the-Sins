@@ -9,7 +9,7 @@ public class tester : MonoBehaviour
     void Start()
     {
         
-        thisList.Add
+        
     }
 
     // Update is called once per frame

@@ -52,6 +52,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4014792801158639044}
     - target: {fileID: 479361978815120227, guid: 8b10d04c46d4b3642b6b49ef1d9d0f81, type: 3}
+      propertyPath: holdThreshold
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 479361978815120227, guid: 8b10d04c46d4b3642b6b49ef1d9d0f81, type: 3}
       propertyPath: holdthreshold
       value: 250
       objectReference: {fileID: 0}
