@@ -3,6 +3,48 @@ using System.Collections;
 
 public class PlayerStats : MonoBehaviour
 {
-    public float damage = 30f;
-    public float speed = 50f;
+    [Header("Base Stats")]
+    public float baseHealth = 100f;
+    public float baseDamage = 30f;
+    public float baseAttackSpeed = 1f;
+    public float baseSpeed = 50f;
+    public float baseCritChance = 0.02f;
+    public float baseCritDamage = 1.5f;
+
+    [Header("Current Stats")]
+    public float Currenthealth;
+    public float damage;
+    public float attackSpeed;
+    public float speed;
+    public float critChance;
+    public float critDamage;
+
+    void Awake()
+    {
+        Currenthealth = baseHealth;
+        damage = baseDamage;
+        attackSpeed = baseAttackSpeed;
+        speed = baseSpeed;
+        critChance = baseCritChance;
+        critDamage = baseCritDamage;
+    }
+
+    void Update()
+    {
+        UpdatePlayerStats();
+    }
+
+    void UpdatePlayerStats()
+    {
+        
+    }
+
+    public void TakeDamage(float damage)
+    {
+        Currenthealth -= damage;
+        if(Currenthealth <= 0)
+        {
+            Debug.Log("You dead lol");
+        }
+    }
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3232036875523945478}
   - component: {fileID: 6949124888770649726}
   - component: {fileID: 98572812661408805}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -190,6 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponDir
   distance: 1.1
+  currentWeapon: {fileID: 0}
   WeaponSlot1: {fileID: 2610859957686561614, guid: b22b79d122e59da4ab85a1b1fc9696a4, type: 3}
   WeaponSlot2: {fileID: 8073785538072078474, guid: 2943ca4927145b74d908c9ed90ff3132, type: 3}
 --- !u!114 &98572812661408805

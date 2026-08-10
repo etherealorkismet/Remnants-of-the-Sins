@@ -5,8 +5,8 @@ public class Playermovement : MonoBehaviour
 {
     PlayerStats playerStatsSC;
     [Header("Dash")]
-    public float dashSpeed = 12f;
-    public float dashDuration = 0.4f;
+    public float dashSpeed = 300f;
+    public float dashDuration = 0.2f;
     public float dashCooldown = 1f;
 
     [Header("Animator")]//delete this later when done with the testing
