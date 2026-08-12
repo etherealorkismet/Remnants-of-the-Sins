@@ -16,7 +16,14 @@ public class ProjectileProperties : MonoBehaviour
         playerSC = player.GetComponent<Playermovement>();
         playerStatsSC = player.GetComponent<PlayerStats>();
         rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(playerSC.lastMoveDirection * 5 * Time.deltaTime);
+        if (this.gameObject.CompareTag("ProjectileUnaffected"))
+        {
+            rb.AddForce(playerSC.lastMoveDirection  * 5 * Time.deltaTime);
+        }
+        else
+        {
+            rb.AddForce(playerSC.lastMoveDirection  * 2 * Time.deltaTime);
+        }
     }
 
     // Update is called once per frame

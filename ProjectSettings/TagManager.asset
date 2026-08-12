@@ -7,6 +7,12 @@ TagManager:
   - Sword
   - Enemy
   - Bow
+  - ProjectileUnaffected
+  - ProjectileAffected
+  - LeftDoor
+  - UpDoor
+  - RightDoor
+  - DownDoor
   layers:
   - Default
   - TransparentFX

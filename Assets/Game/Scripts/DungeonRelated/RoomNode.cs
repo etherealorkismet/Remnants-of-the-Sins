@@ -26,7 +26,7 @@ public class RoomNode : MonoBehaviour
     {
         DungeonManager roomGenSC = levelMang.GetComponent<DungeonManager>();
 
-        transform.position = gridPosition * 15;
+        transform.position = gridPosition * DungeonManager.current.SpaceBetween;
 
         // Randomly generate exits
         for (int i = 0; i < 4; i++)

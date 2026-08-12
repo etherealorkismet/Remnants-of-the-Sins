@@ -9,6 +9,7 @@ public class DrawingGenerator : MonoBehaviour , Weapon //spell cs
     public GameObject Line;
     Drawing activeLine;
     public TextAsset SpellsText;
+    public Transform projSpawner;
 
     void Awake()
     {
@@ -115,6 +116,14 @@ public class DrawingGenerator : MonoBehaviour , Weapon //spell cs
                 }
                 if (ifpass)
                 {
+                    if (s.name == "Fireball")
+                    {
+                        ProjectileController.current.SpawnProjectile(projSpawner, ProjectileController.current.spellFireBallDefault);
+                    }
+                    if (s.name == "Bomb")
+                    {
+                        ProjectileController.current.SpawnProjectile(projSpawner, ProjectileController.current.spellBombDefault);
+                    }
                     return s.name;
                 }
             }

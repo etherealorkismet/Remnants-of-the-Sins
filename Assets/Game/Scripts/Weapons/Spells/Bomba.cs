@@ -6,7 +6,7 @@ public class Bomba : MonoBehaviour
     public float windUpTime = 2.5f;
     public float damage;
     public float damageMultiplier = 2f;
-    public float explosionRange = 0.3f;
+    public float explosionRange = 0.8f;
 
     [Header("Detection")]
     public LayerMask targetLayers;
@@ -14,14 +14,10 @@ public class Bomba : MonoBehaviour
     private float timeLeft;
 
     // Set this when the bomb is created
-    public void SetDamage(float playerDamage)
-    {
-        damage = playerDamage * damageMultiplier;
-    }
 
     void Awake()
     {
-        damage = 50f;
+        damage = PlayerStats.current.damage * damageMultiplier;
         timeLeft = windUpTime;
     }
 
@@ -52,7 +48,7 @@ public class Bomba : MonoBehaviour
 
         foreach (Collider2D hit in hitColliders)
         {
-            Debug.Log("Explosion detected: " + hit.name);
+            //Debug.Log("Explosion detected: " + hit.name);
 
             if (hit.gameObject.layer == LayerMask.NameToLayer("Player"))
             {
@@ -61,7 +57,7 @@ public class Bomba : MonoBehaviour
                 if (playerStats != null)
                 {
                     playerStats.TakeDamage(damage);
-                    Debug.Log("Player took " + damage + " damage!");
+                    //Debug.Log("Player took " + damage + " damage!");
                 }
             }
 

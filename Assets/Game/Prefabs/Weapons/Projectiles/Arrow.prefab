@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 3266875829991552956}
   - component: {fileID: 683204713648587679}
   m_Layer: 0
-  m_Name: arrow_0
-  m_TagString: Untagged
+  m_Name: Arrow
+  m_TagString: ProjectileUnaffected
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -153,8 +153,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileProperties
   rb: {fileID: 0}
-  player: {fileID: 0}
-  playersc: {fileID: 0}
 --- !u!50 &683204713648587679
 Rigidbody2D:
   serializedVersion: 5

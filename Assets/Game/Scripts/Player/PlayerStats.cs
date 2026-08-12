@@ -19,8 +19,10 @@ public class PlayerStats : MonoBehaviour
     public float critChance;
     public float critDamage;
 
+    public static PlayerStats current;
     void Awake()
     {
+        current = this;
         Currenthealth = baseHealth;
         damage = baseDamage;
         attackSpeed = baseAttackSpeed;

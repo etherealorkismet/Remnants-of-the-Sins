@@ -18,12 +18,15 @@ public class DungeonManager : MonoBehaviour
     public int normalRoomminimumExits = 1;
     public RoomBuilder roomBuilderSC;
     private float threshold = 0;
+    public static DungeonManager current;
+    public float SpaceBetween = 15f;
 
     // Every room in the dungeon
     public Dictionary<Vector2, RoomNode> rooms = new Dictionary<Vector2, RoomNode>();
 
     void Awake()
     {
+        current = this;
         roomBuilderSC = GetComponent<RoomBuilder>();
 
         // Create the starting RoomNode

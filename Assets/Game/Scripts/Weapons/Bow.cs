@@ -3,7 +3,7 @@ using UnityEngine;
 public class Bow : MonoBehaviour, Weapon
 {
     bool InUse;
-    float holdtime;
+    public float holdtime;
     public Transform projSpawner;
     public float holdThreshold = 500f;
     public GameObject projectile;
@@ -17,7 +17,6 @@ public class Bow : MonoBehaviour, Weapon
         if (InUse)
         {
             holdtime += 1;
-            Debug.Log(holdtime);
         }
     }
     public bool Use()
@@ -35,7 +34,7 @@ public class Bow : MonoBehaviour, Weapon
     {
         if (holdtime > holdThreshold)
         {
-            Instantiate(projectile, projSpawner.position, projSpawner.rotation);
+            ProjectileController.current.SpawnProjectile(projSpawner,ProjectileController.current.bowDefault);
         }
         InUse = false;
         return false;

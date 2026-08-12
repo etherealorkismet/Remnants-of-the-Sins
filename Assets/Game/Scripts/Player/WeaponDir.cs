@@ -59,7 +59,7 @@ public class WeaponDir : MonoBehaviour
         }
         if(currentWeapon.tag != Weapon.tag)
         {
-            Debug.Log("wiaubda");
+            //Debug.Log("wiaubda");
             RemoveOldWeapon();
             GameObject weapon = GameObject.Instantiate(Weapon,this.transform);//temp!!!!!!!!!!!!!!!! create teh weapon (sword)
             currentWeapon = weapon;

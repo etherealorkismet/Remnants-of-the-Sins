@@ -16,15 +16,18 @@ public class Playermovement : MonoBehaviour
     public Vector2 lastMoveDirection = Vector2.right; // Default dash direction
     private bool isDashing = false;
     private bool canDash = true;
-
+    public Vector2 playerPos;
+    public static Playermovement current;
 
     void Start()
     {
+        current = this;
         playerStatsSC = GetComponent<PlayerStats>();
         rb = GetComponent<Rigidbody2D>();
     }
     void Update()
     {
+        playerPos = this.transform.position;
         // Don't read movement input while dashing
         if (!isDashing)
         {
@@ -92,4 +95,10 @@ public class Playermovement : MonoBehaviour
 
         canDash = true;
     }
+
+    public void UpdatePos(Vector2 pos)
+    {
+        playerPos = pos;
+    }
+
 }
