@@ -4,26 +4,41 @@ using System.Collections;
 
 public class ProjectileProperties : MonoBehaviour
 {
-    public Rigidbody2D rb;
+    Rigidbody2D rb;
     GameObject player;
     Playermovement playerSC;
     PlayerStats playerStatsSC;
-
+    public AttackType TypeSC = AttackType.Click;
+    float chargeTime;
+    float maxChargeTime;
+    float dmg;
+    Vector2 dir;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
+
+        rb = GetComponent<Rigidbody2D>();
         player =  GameObject.FindWithTag("Player");
         playerSC = player.GetComponent<Playermovement>();
         playerStatsSC = player.GetComponent<PlayerStats>();
-        rb = GetComponent<Rigidbody2D>();
+        dir = playerSC.lastMoveDirection;
+        dmg  = playerStatsSC.damage;
         if (this.gameObject.CompareTag("ProjectileUnaffected"))
         {
-            rb.AddForce(playerSC.lastMoveDirection  * 5 * Time.deltaTime);
+            if(transform.parent.CompareTag("Charge"))
+            {
+                chargeTime = ProjectileController.current.weaponCharge;
+                maxChargeTime = ProjectileController.current.weaponMaxCharge;
+                dmg = playerStatsSC.damage * (1 + (chargeTime/maxChargeTime)/2);
+            }
         }
-        else
-        {
-            rb.AddForce(playerSC.lastMoveDirection  * 2 * Time.deltaTime);
-        }
+        transform.SetParent(null);
+    }
+
+    void Update()
+    {
+        rb.MovePosition((Vector3)dir / 15 + transform.position);
     }
 
     // Update is called once per frame
@@ -37,7 +52,7 @@ public class ProjectileProperties : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             EnemyStats enemy = collision.gameObject.GetComponent<EnemyStats>();
-            enemy.TakeDamage(playerStatsSC.damage);
+            enemy.TakeDamage(dmg);
         }
         Destroy(gameObject);
     }

@@ -4,15 +4,15 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Sword
   - Enemy
-  - Bow
   - ProjectileUnaffected
   - ProjectileAffected
   - LeftDoor
   - UpDoor
   - RightDoor
   - DownDoor
+  - Click
+  - Charge
   layers:
   - Default
   - TransparentFX

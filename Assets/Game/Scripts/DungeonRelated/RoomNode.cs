@@ -9,6 +9,8 @@ public class RoomNode : MonoBehaviour
     public Vector2 gridPosition;
     public Vector2 gridSize;
 
+
+    [Header("Room Settings")]
     public RoomType roomtype = RoomType.Normal;
     public int depth = 0;
 

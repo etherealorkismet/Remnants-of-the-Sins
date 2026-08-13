@@ -118,11 +118,11 @@ public class DrawingGenerator : MonoBehaviour , Weapon //spell cs
                 {
                     if (s.name == "Fireball")
                     {
-                        ProjectileController.current.SpawnProjectile(projSpawner, ProjectileController.current.spellFireBallDefault);
+                        ProjectileController.current.SpawnProjectile(projSpawner, ProjectileController.current.spellFireBallDefault,this.transform);
                     }
                     if (s.name == "Bomb")
                     {
-                        ProjectileController.current.SpawnProjectile(projSpawner, ProjectileController.current.spellBombDefault);
+                        ProjectileController.current.SpawnProjectile(projSpawner, ProjectileController.current.spellBombDefault,this.transform);
                     }
                     return s.name;
                 }

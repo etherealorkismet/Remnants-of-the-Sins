@@ -19,6 +19,7 @@ public class Bomba : MonoBehaviour
     {
         damage = PlayerStats.current.damage * damageMultiplier;
         timeLeft = windUpTime;
+        transform.SetParent(null);
     }
 
     void Update()

@@ -5,7 +5,7 @@ public class Playermovement : MonoBehaviour
 {
     PlayerStats playerStatsSC;
     [Header("Dash")]
-    public float dashSpeed = 300f;
+    public float dashMultiplier = 1.564f;
     public float dashDuration = 0.2f;
     public float dashCooldown = 1f;
 
@@ -18,6 +18,7 @@ public class Playermovement : MonoBehaviour
     private bool canDash = true;
     public Vector2 playerPos;
     public static Playermovement current;
+    public bool canMove = true;
 
     void Start()
     {
@@ -28,45 +29,49 @@ public class Playermovement : MonoBehaviour
     void Update()
     {
         playerPos = this.transform.position;
-        // Don't read movement input while dashing
-        if (!isDashing)
+        if (canMove == true)
         {
-            moveInput = Vector2.zero;
-
-            // Up
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-                moveInput.y += 1f;
-
-            // Down
-            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-                moveInput.y -= 1f;
-
-            // Left
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-                moveInput.x -= 1f;
-
-            // Right
-            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-                moveInput.x += 1f;
-
-            // Prevent faster diagonal movement
-            moveInput.Normalize();
-
-            // Save the last movement direction
-            if (moveInput != Vector2.zero)
+            // Don't read movement input while dashing
+            if (!isDashing)
             {
-                lastMoveDirection = moveInput;
+                moveInput = Vector2.zero;
+
+                // Up
+                if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+                    moveInput.y += 1f;
+
+                // Down
+                if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+                    moveInput.y -= 1f;
+
+                // Left
+                if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+                    moveInput.x -= 1f;
+
+                // Right
+                if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+                    moveInput.x += 1f;
+
+                // Prevent faster diagonal movement
+                moveInput.Normalize();
+
+                // Save the last movement direction
+                if (moveInput != Vector2.zero)
+                {
+                    lastMoveDirection = moveInput;
+                }
+
+                // Normal movement
+                rb.AddForce(moveInput * playerStatsSC.speed);
             }
 
-            // Normal movement
-            rb.AddForce(moveInput * playerStatsSC.speed * Time.deltaTime);
+            // Dash with Left Shift
+            if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+            {
+                StartCoroutine(Dash());
+            }
         }
-
-        // Dash with Left Shift
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
-        {
-            StartCoroutine(Dash());
-        }
+        
     }
 
     IEnumerator Dash()
@@ -78,12 +83,16 @@ public class Playermovement : MonoBehaviour
 
         while (timer < dashDuration)
         {
+            if (canMove != true)
+            {
+                break;
+            }
             float t = timer / dashDuration;
 
             // Ease out
-            float currentSpeed = dashSpeed * (1 - t * t);
+            float currentSpeed = dashMultiplier * (1 - t * t);
 
-            rb.AddForce(lastMoveDirection * currentSpeed * Time.deltaTime);
+            rb.AddForce(lastMoveDirection * currentSpeed);
 
             timer += Time.deltaTime;
             yield return null;

@@ -14,7 +14,7 @@ public class Bow : MonoBehaviour, Weapon
         {
             holdtime =0;
         }
-        if (InUse)
+        if (InUse && holdtime < holdThreshold)
         {
             holdtime += 1;
         }
@@ -25,16 +25,16 @@ public class Bow : MonoBehaviour, Weapon
     }
     public bool HoldToUseMD()
     {
-        Debug.Log("arrow");
         InUse = true;
         return true;
     }
 
     public bool HoldToUseMU()
     {
-        if (holdtime > holdThreshold)
+        if (holdtime >= (holdThreshold/4))
         {
-            ProjectileController.current.SpawnProjectile(projSpawner,ProjectileController.current.bowDefault);
+            ProjectileController.current.weaponChargeStats(holdtime,holdThreshold);
+            ProjectileController.current.SpawnProjectile(projSpawner,ProjectileController.current.bowDefault,this.transform);
         }
         InUse = false;
         return false;

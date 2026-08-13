@@ -297,6 +297,8 @@ MonoBehaviour:
   bowDefault: {fileID: 227684336721812686, guid: a4adbccefb40bbb43bb999bfed57e0f9, type: 3}
   spellFireBallDefault: {fileID: 8873098170310467030, guid: 82a4b9563738f934d9575d558b8271a2, type: 3}
   spellBombDefault: {fileID: 3796262758948012931, guid: f6f610a772790dc4aacb2cc738fe3438, type: 3}
+  weaponCharge: 0
+  weaponMaxCharge: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,6 +449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97c7d403fff2a894280a880f5a8d446f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
+  cameraUpdate: 1
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0

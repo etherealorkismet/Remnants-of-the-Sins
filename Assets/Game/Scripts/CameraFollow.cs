@@ -3,6 +3,13 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     Transform player;
+    public static CameraFollow current;
+    public bool cameraUpdate = true;
+
+    void Awake()
+    {
+        current = this;
+    }
 
     void Start()
     {
@@ -11,13 +18,16 @@ public class CameraFollow : MonoBehaviour
 
     void LateUpdate()
     {
-        if (player == null)
-            return;
+        if (cameraUpdate == true)
+        {
+            if (player == null)
+                return;
 
-        transform.position = new Vector3(
-            player.position.x,
-            player.position.y,
-            transform.position.z
-        );
+            transform.position = new Vector3(
+                player.position.x,
+                player.position.y,
+                transform.position.z
+            );   
+        }
     }
 }

@@ -125,7 +125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6228421204920443735, guid: 8b10d04c46d4b3642b6b49ef1d9d0f81, type: 3}
       propertyPath: m_TagString
-      value: Bow
+      value: Charge
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

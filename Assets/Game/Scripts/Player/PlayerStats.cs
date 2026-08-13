@@ -7,7 +7,7 @@ public class PlayerStats : MonoBehaviour
     public float baseHealth = 100f;
     public float baseDamage = 30f;
     public float baseAttackSpeed = 1f;
-    public float baseSpeed = 50f;
+    public float baseSpeed = 0.25f;
     public float baseCritChance = 0.02f;
     public float baseCritDamage = 1.5f;
 

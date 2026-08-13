@@ -64,13 +64,17 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 5436602393943030970, guid: 5276db73fa7024f418ed38ffa43e72e4, type: 3}
+    - target: {fileID: 1349947874469217532, guid: 9855a6c5b79895a45bb6286a9150f0d4, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3025185175787464341, guid: 9855a6c5b79895a45bb6286a9150f0d4, type: 3}
       propertyPath: m_Name
       value: Sword Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3025185175787464341, guid: 9855a6c5b79895a45bb6286a9150f0d4, type: 3}
       propertyPath: m_TagString
-      value: Sword
+      value: Click
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
