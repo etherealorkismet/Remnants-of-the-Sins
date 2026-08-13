@@ -10,34 +10,41 @@ public class DoorToRoom : MonoBehaviour
     Vector2 down;
     void Awake()
     {
-        left = new Vector2(-DungeonManager.current.SpaceBetween,0);
-        up = new Vector2(0,DungeonManager.current.SpaceBetween);
-        right = new Vector2(DungeonManager.current.SpaceBetween,0);
-        down = new Vector2(0,-DungeonManager.current.SpaceBetween);
+        float spaceBetween = DungeonManager.current.SpaceBetween - (4.75f*2);
+        left = new Vector2(-spaceBetween,0);
+        up = new Vector2(0,spaceBetween);
+        right = new Vector2(spaceBetween,0);
+        down = new Vector2(0,-spaceBetween);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("start");
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Hi this works");
+            Vector2 playerposition = Playermovement.current.playerPos;
             if (this.gameObject.CompareTag("LeftDoor"))
             {
-                Playermovement.current.playerPos += left;
+                Debug.Log("left");
+                playerposition += left;
             }
             if (this.gameObject.CompareTag("UpDoor"))
             {
-                Playermovement.current.playerPos += up;
+                Debug.Log("up");
+                playerposition += up;
             }
             if (this.gameObject.CompareTag("RightDoor"))
             {
-                Playermovement.current.playerPos += right;
+                Debug.Log("right");
+                playerposition += right;
             }
             if (this.gameObject.CompareTag("DownDoor"))
             {
-                Playermovement.current.playerPos += down;
+                Debug.Log("down");
+                playerposition += down;
             }
-            Playermovement.current.UpdatePos(Playermovement.current.playerPos);
+            Debug.Log("end");
+            Playermovement.current.UpdatePos(playerposition);
         }
     }
 }

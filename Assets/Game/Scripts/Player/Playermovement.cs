@@ -99,6 +99,7 @@ public class Playermovement : MonoBehaviour
     public void UpdatePos(Vector2 pos)
     {
         playerPos = pos;
+        transform.position = pos;
     }
 
 }
