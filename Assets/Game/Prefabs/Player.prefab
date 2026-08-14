@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3232036875523945478}
   - component: {fileID: 6949124888770649726}
   - component: {fileID: 98572812661408805}
+  - component: {fileID: 4337390250342206116}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -219,3 +220,19 @@ MonoBehaviour:
   speed: 50
   critChance: 0
   critDamage: 0
+--- !u!114 &4337390250342206116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8729042479826370432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16b8b9eaa6299e24880bb258780e2782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Inventory
+  inventoryBar: {fileID: 0}
+  toggleInventory: 0
+  itemJSON: {fileID: 4900000, guid: 57e79149381aeb8409ec1187b94c166f, type: 3}
+  heldItems: []

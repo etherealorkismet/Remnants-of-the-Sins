@@ -13,6 +13,7 @@ TagManager:
   - DownDoor
   - Click
   - Charge
+  - InvBar
   layers:
   - Default
   - TransparentFX

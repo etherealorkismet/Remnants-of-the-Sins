@@ -38,7 +38,7 @@ public class ProjectileProperties : MonoBehaviour
 
     void Update()
     {
-        rb.MovePosition((Vector3)dir / 15 + transform.position);
+        rb.MovePosition((Vector3)dir / 10 + transform.position);
     }
 
     // Update is called once per frame

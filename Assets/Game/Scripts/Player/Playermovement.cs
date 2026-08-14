@@ -37,19 +37,19 @@ public class Playermovement : MonoBehaviour
                 moveInput = Vector2.zero;
 
                 // Up
-                if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+                if (Input.GetKey(KeybindManager.keybind.MoveForward) || Input.GetKey(KeybindManager.keybind.AltMoveForward))
                     moveInput.y += 1f;
 
                 // Down
-                if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+                if (Input.GetKey(KeybindManager.keybind.MoveDown) || Input.GetKey(KeybindManager.keybind.AltMoveDown))
                     moveInput.y -= 1f;
 
                 // Left
-                if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+                if (Input.GetKey(KeybindManager.keybind.MoveLeft) || Input.GetKey(KeybindManager.keybind.AltMoveLeft))
                     moveInput.x -= 1f;
 
                 // Right
-                if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+                if (Input.GetKey(KeybindManager.keybind.MoveRight) || Input.GetKey(KeybindManager.keybind.MoveRight))
                     moveInput.x += 1f;
 
                 // Prevent faster diagonal movement
@@ -66,7 +66,7 @@ public class Playermovement : MonoBehaviour
             }
 
             // Dash with Left Shift
-            if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+            if (Input.GetKeyDown(KeybindManager.keybind.Dash) && canDash)
             {
                 StartCoroutine(Dash());
             }

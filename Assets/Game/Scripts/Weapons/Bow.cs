@@ -7,7 +7,10 @@ public class Bow : MonoBehaviour, Weapon
     public Transform projSpawner;
     public float holdThreshold = 500f;
     public GameObject projectile;
-    
+    void Awake()
+    {
+        holdThreshold = holdThreshold / PlayerStats.current.attackSpeed;
+    }
     void Update()
     {
         if (!InUse)

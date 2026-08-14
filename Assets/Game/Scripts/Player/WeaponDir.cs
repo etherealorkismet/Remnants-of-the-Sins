@@ -32,11 +32,11 @@ public class WeaponDir : MonoBehaviour
 
 
         //testing
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeybindManager.keybind.WeaponSlot1))
         {
             ChangeCurrentWeapon(WeaponSlot1);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeybindManager.keybind.WeaponSlot2))
         {
             ChangeCurrentWeapon(WeaponSlot2);
         }

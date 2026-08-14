@@ -1,0 +1,367 @@
+{
+  "items": [
+    {
+      "id": "0",
+      "name": "Bag Of Something",
+      "effects": [
+        {
+          "stat": "speed",
+          "type": "multiplier",
+          "value": 1.2
+        },
+        {
+          "stat": "attackSpeed",
+          "type": "multiplier",
+          "value": 1.3
+        }
+      ]
+    },
+    {
+      "id": "1",
+      "name": "Accursed Rubiks Cube",
+      "effects": [
+        {
+          "stat": "health",
+          "type": "multiplier",
+          "value": 0.8
+        },
+        {
+          "stat": "damage",
+          "type": "flat",
+          "value": 10
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Pointy Stick",
+      "effects": [
+        {
+          "stat": "damage",
+          "type": "flat",
+          "value": 30
+        },
+        {
+          "stat": "attackSpeed",
+          "type": "multiplier",
+          "value": 0.8
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Unprescribed Paracetamol",
+      "effects": [
+        {
+          "stat": "health",
+          "type": "multiplier",
+          "value": 1.5
+        },
+        {
+          "stat": "speed",
+          "type": "multiplier",
+          "value": 0.9
+        },
+        {
+          "stat": "damage",
+          "type": "flat",
+          "value": -3
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "4-Leaf Clover",
+      "effects": [
+        {
+          "stat": "critDamage",
+          "type": "multiplier",
+          "value": 1.2
+        },
+        {
+          "stat": "critChance",
+          "type": "multiplier",
+          "value": 1.5
+        },
+        {
+          "stat": "speed",
+          "type": "flat",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Gloves of the Condemned",
+      "effects": [
+        {
+          "stat": "attackSpeed",
+          "type": "multiplier",
+          "value": 2
+        },
+        {
+          "stat": "damage",
+          "type": "flat",
+          "value": -5
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "Pint Of Beer",
+      "effects": [
+        {
+          "stat": "critDamage",
+          "type": "multiplier",
+          "value": 1.5
+        },
+        {
+          "stat": "damage",
+          "type": "flat",
+          "value": 5
+        },
+        {
+          "stat": "speed",
+          "type": "multiplier",
+          "value": 1.5
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "name": "Invisibile Pistol",
+      "effects": [
+        {
+          "stat": "damage",
+          "type": "multiplier",
+          "value": 1.25
+        },
+        {
+          "stat": "critChance",
+          "type": "multiplier",
+          "value": 0.8
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "name": "137-Paged Magazine",
+      "effects": [
+        {
+          "stat": "health",
+          "type": "multiplier",
+          "value": 1.05
+        },
+        {
+          "stat": "damage",
+          "type": "multiplier",
+          "value": 1.05
+        },
+        {
+          "stat": "attackSpeed",
+          "type": "multiplier",
+          "value": 1.05
+        },
+        {
+          "stat": "critChance",
+          "type": "multiplier",
+          "value": 1.05
+        },
+        {
+          "stat": "critDamage",
+          "type": "multiplier",
+          "value": 1.05
+        },
+        {
+          "stat": "speed",
+          "type": "multiplier",
+          "value": 0.9
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "name": "Fun Pillow",
+      "effects": [
+        {
+          "stat": "critChance",
+          "type": "flat",
+          "value": 0.20
+        },
+        {
+          "stat": "critDamage",
+          "type": "multiplier",
+          "value": 6
+        },
+        {
+          "stat": "damage",
+          "type": "flat",
+          "value": -15
+        },
+        {
+          "stat": "speed",
+          "type": "multiplier",
+          "value": 0.85
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "name": "Box Of Solitude",
+      "effects": [
+        {
+          "stat": "damage",
+          "type": "flat",
+          "value": 15
+        },
+        {
+          "stat": "critChance",
+          "type": "multiplier",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "name": "Coffee Mug",
+      "effects": [
+        {
+          "stat": "attackSpeed",
+          "type": "flat",
+          "value": 0.2
+        },
+        {
+          "stat": "speed",
+          "type": "multiplier",
+          "value": 1.75
+        },
+        {
+          "stat": "health",
+          "type": "multiplier",
+          "value": 0.85
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "name": "Aw Tysm",
+      "effects": [
+        {
+          "stat": "damage",
+          "type": "flat",
+          "value": -5
+        },
+        {
+          "stat": "speed",
+          "type": "multiplier",
+          "value": 1.05
+        },
+        {
+          "stat": "critChance",
+          "type": "multiplier",
+          "value": 0.85
+        },
+        {
+          "stat": "critDamage",
+          "type": "multiplier",
+          "value": 0.9
+        },
+        {
+          "stat": "attackSpeed",
+          "type": "flat",
+          "value": 0.25
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "name": "Crystalised Tank Barrel",
+      "effects": [
+        {
+          "stat": "damage",
+          "type": "flat",
+          "value": 20
+        },
+        {
+          "stat": "speed",
+          "type": "multiplier",
+          "value": 0.75
+        },
+        {
+          "stat": "attackSpeed",
+          "type": "multiplier",
+          "value": 0.55
+        },
+        {
+          "stat": "health",
+          "type": "flat",
+          "value": 50
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "name": "Broken Radio",
+      "effects": [
+        {
+          "stat": "damage",
+          "type": "flat",
+          "value": -5
+        },
+        {
+          "stat": "speed",
+          "type": "multiplier",
+          "value": 1.15
+        },
+        {
+          "stat": "attackSpeed",
+          "type": "multiplier",
+          "value": 1.3
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "name": "Wooden Signboard",
+      "effects": [
+        {
+          "stat": "damage",
+          "type": "multiplier",
+          "value": 0.5
+        },
+        {
+          "stat": "attackSpeed",
+          "type": "multiplier",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "name": "Battered-Plushie",
+      "effects": [
+        {
+          "stat": "damage",
+          "type": "multiplier",
+          "value": 1.4
+        },
+        {
+          "stat": "speed",
+          "type": "multiplier",
+          "value": 2.2
+        }
+      ]
+    },
+    {
+      "id": "17",
+      "name": "Pile Of Synthetic Diamonds",
+      "effects": [
+        {
+          "stat": "damage",
+          "type": "multiplier",
+          "value": 0.4
+        }
+      ]
+    }
+  ]
+}
