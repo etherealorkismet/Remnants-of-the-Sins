@@ -83,6 +83,8 @@ public class Playermovement : MonoBehaviour
 
         while (timer < dashDuration)
         {
+            PlayerStats.current.canBeDamaged = false;
+            PlayerStats.current.immunityTimer = 50f;
             if (canMove != true)
             {
                 break;
@@ -97,7 +99,8 @@ public class Playermovement : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
-
+        PlayerStats.current.canBeDamaged = true;
+        PlayerStats.current.immunityTimer = PlayerStats.current.immunityTime;
         isDashing = false;
 
         yield return new WaitForSeconds(dashCooldown);

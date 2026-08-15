@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6890070543700868958}
   - component: {fileID: 1137263957899045056}
   - component: {fileID: 2051263099464935983}
-  m_Layer: 7
+  m_Layer: 31
   m_Name: TestEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -169,6 +169,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyFollow
   distanceThreshold: 4
+  attackRange: 0.34
+  inRange: 0
+  damage: 10
 --- !u!50 &2051263099464935983
 Rigidbody2D:
   serializedVersion: 5

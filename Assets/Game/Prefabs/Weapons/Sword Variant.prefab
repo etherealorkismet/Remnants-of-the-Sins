@@ -68,9 +68,17 @@ PrefabInstance:
       propertyPath: m_SpriteSortPoint
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1692669016649005341, guid: 9855a6c5b79895a45bb6286a9150f0d4, type: 3}
+      propertyPath: attackRange
+      value: 0.31
+      objectReference: {fileID: 0}
     - target: {fileID: 3025185175787464341, guid: 9855a6c5b79895a45bb6286a9150f0d4, type: 3}
       propertyPath: m_Name
       value: Sword Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3025185175787464341, guid: 9855a6c5b79895a45bb6286a9150f0d4, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3025185175787464341, guid: 9855a6c5b79895a45bb6286a9150f0d4, type: 3}
       propertyPath: m_TagString

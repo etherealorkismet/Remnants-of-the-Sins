@@ -3,10 +3,12 @@ using UnityEngine;
 public class Bomba : MonoBehaviour
 {
     [Header("Bomb Settings")]
-    public float windUpTime = 2.5f;
+    public Rigidbody2D rb;
+    public float windUpTime = 3.5f;
     public float damage;
     public float damageMultiplier = 2f;
     public float explosionRange = 0.8f;
+    float pushTime = 0.2f;
 
     [Header("Detection")]
     public LayerMask targetLayers;
@@ -17,9 +19,11 @@ public class Bomba : MonoBehaviour
 
     void Awake()
     {
+        rb = GetComponent<Rigidbody2D>();
         damage = PlayerStats.current.damage * damageMultiplier;
         timeLeft = windUpTime;
         transform.SetParent(null);
+        StartUpMovement(pushTime);
     }
 
     void Update()
@@ -30,6 +34,16 @@ public class Bomba : MonoBehaviour
         {
             CheckGizmoCollision();
             Destroy(gameObject);
+        }
+    }
+
+    void StartUpMovement(float time)
+    {
+        float t = 0;
+        if (t < time)
+        {
+            t += 0.1f;
+            rb.AddForce(Playermovement.current.lastMoveDirection * 3);
         }
     }
 

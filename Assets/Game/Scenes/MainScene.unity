@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 224007874}
   - component: {fileID: 224007875}
   - component: {fileID: 224007876}
+  - component: {fileID: 224007877}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -326,6 +327,22 @@ MonoBehaviour:
   InventoryBar: 9
   TestButton: 106
   TestButton2: 107
+--- !u!114 &224007877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224007869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 052f1c8869273354c97d5e54aed9468d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyManager
+  enemyTypes:
+  - {fileID: 1750287477821556433, guid: dba15c52b5a697c4c8aa2d957d8d29d1, type: 3}
+  - {fileID: 9018343009217413320, guid: 4751909f692f2a944968b51669e44a39, type: 3}
+  - {fileID: 2310247714581873693, guid: 7a5fd878c57a5e046ad1beb5e81a95a5, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

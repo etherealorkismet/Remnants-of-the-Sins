@@ -16,7 +16,7 @@ public class RoomNode : MonoBehaviour
 
     public bool[] exits = new bool[4];
 
-    Vector2[] directions =
+    private Vector2[] directions =
     {
         Vector2.left,
         Vector2.up,
@@ -24,17 +24,61 @@ public class RoomNode : MonoBehaviour
         Vector2.down
     };
 
+    public bool cleared = false;
+
+    private RoomVisual roomVisual;
+
+
+    void Start()
+    {
+        // Find the RoomVisual inside this RoomNode
+        roomVisual = GetComponentInChildren<RoomVisual>();
+
+        // Start room is already cleared
+        if (roomtype == RoomType.Start)
+        {
+            cleared = true;
+        }
+    }
+
+
+    void Update()
+    {
+        // Don't check again once the room has been cleared
+        if (cleared)
+        {
+            return;
+        }
+
+        // Check if there are any enemies left inside this RoomNode
+        if (GetComponentInChildren<EnemyStats>() == null)
+        {
+            cleared = true;
+
+            // Open the doors based on the room's exits
+            if (roomVisual != null)
+            {
+                roomVisual.BuildExits(this);
+            }
+        }
+    }
+
+
     public void Generate()
     {
-        DungeonManager roomGenSC = levelMang.GetComponent<DungeonManager>();
+        DungeonManager roomGenSC =
+            levelMang.GetComponent<DungeonManager>();
 
-        transform.position = gridPosition * DungeonManager.current.SpaceBetween;
+        transform.position =
+            gridPosition * DungeonManager.current.SpaceBetween;
+
 
         // Randomly generate exits
         for (int i = 0; i < 4; i++)
         {
             exits[i] = Random.Range(0, 4) == 1;
         }
+
 
         // Direction of the parent room
         Vector2 parentdir = Vector2.zero;
@@ -43,7 +87,7 @@ public class RoomNode : MonoBehaviour
         {
             parentdir = parent.gridPosition - gridPosition;
 
-            // Always keep the doorway back to the parent open
+            // Always keep doorway back to parent open
             for (int i = 0; i < 4; i++)
             {
                 if (directions[i] == parentdir)
@@ -54,6 +98,7 @@ public class RoomNode : MonoBehaviour
             }
         }
 
+
         // Find all valid directions
         List<int> validDirections = new List<int>();
 
@@ -61,11 +106,14 @@ public class RoomNode : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
-            //ignore the parent direction
+            // Ignore parent direction
             if (parent != null && directions[i] == parentdir)
+            {
                 continue;
+            }
 
-            Vector2 newPos = gridPosition + directions[i];
+            Vector2 newPos =
+                gridPosition + directions[i];
 
             if (roomGenSC.CanGenerateRoom(newPos))
             {
@@ -78,24 +126,37 @@ public class RoomNode : MonoBehaviour
             }
         }
 
-        //force exits open if havent reached minimum room count
+
+        // Force exits open if minimum room count hasn't been reached
         if (roomGenSC.currentRooms < roomGenSC.minimumRooms)
         {
             int minimumExits;
 
             if (roomtype == RoomType.Start)
             {
-                minimumExits = roomGenSC.startRoomminimumExits;
+                minimumExits =
+                    roomGenSC.startRoomminimumExits;
             }
             else
             {
-                minimumExits = roomGenSC.normalRoomminimumExits;
+                minimumExits =
+                    roomGenSC.normalRoomminimumExits;
             }
 
-            while (openExitCount < minimumExits && validDirections.Count > 0)
+
+            while (
+                openExitCount < minimumExits &&
+                validDirections.Count > 0
+            )
             {
-                int randomIndex = Random.Range(0, validDirections.Count);
-                int direction = validDirections[randomIndex];
+                int randomIndex =
+                    Random.Range(
+                        0,
+                        validDirections.Count
+                    );
+
+                int direction =
+                    validDirections[randomIndex];
 
                 if (!exits[direction])
                 {
@@ -107,16 +168,20 @@ public class RoomNode : MonoBehaviour
             }
         }
 
-        //generate neighbouring rooms
+
+        // Generate neighbouring rooms
         for (int i = 0; i < 4; i++)
         {
-            //dont gen back into the parent
+            // Don't generate back into parent
             if (parent != null && directions[i] == parentdir)
+            {
                 continue;
+            }
 
             if (exits[i])
             {
-                Vector2 newPos = gridPosition + directions[i];
+                Vector2 newPos =
+                    gridPosition + directions[i];
 
                 if (roomGenSC.CanGenerateRoom(newPos))
                 {
@@ -130,21 +195,31 @@ public class RoomNode : MonoBehaviour
         }
     }
 
+
     void GenerateNewRoom(Vector2 newPos)
     {
-        DungeonManager roomGenSC = levelMang.GetComponent<DungeonManager>();
+        DungeonManager roomGenSC =
+            levelMang.GetComponent<DungeonManager>();
 
-        GameObject newRoom = Instantiate(roomGenSC.roomnodeprefab);
-        newRoom.transform.parent = levelMang.transform;
+        GameObject newRoom =
+            Instantiate(roomGenSC.roomnodeprefab);
 
-        RoomNode roomSC = newRoom.GetComponent<RoomNode>();
+        newRoom.transform.parent =
+            levelMang.transform;
+
+
+        RoomNode roomSC =
+            newRoom.GetComponent<RoomNode>();
 
         roomSC.levelMang = levelMang;
         roomSC.parent = this;
         roomSC.gridPosition = newPos;
         roomSC.gridSize = gridSize;
         roomSC.roomtype = RoomType.Normal;
+
+        // Increase depth from parent
         roomSC.depth = this.depth + 1;
+
 
         roomGenSC.NewRoom(roomSC);
 

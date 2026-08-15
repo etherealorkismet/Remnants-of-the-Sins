@@ -117,12 +117,28 @@ public class DrawingGenerator : MonoBehaviour , Weapon //spell cs
                 if (ifpass)
                 {
                     if (s.name == "Fireball")
-                    {
-                        ProjectileController.current.SpawnProjectile(projSpawner, ProjectileController.current.spellFireBallDefault,this.transform);
+                    {   
+                        if(PlayerStats.current.currentMana >= s.manacost)
+                        {
+                            PlayerStats.current.currentMana -= s.manacost;
+                            ProjectileController.current.SpawnProjectile(projSpawner, ProjectileController.current.spellFireBallDefault,this.transform);
+                        }
+                        if(PlayerStats.current.currentMana < s.manacost)
+                        {
+                            Debug.Log("not enough mana you poor");
+                        }
                     }
                     if (s.name == "Bomb")
                     {
-                        ProjectileController.current.SpawnProjectile(projSpawner, ProjectileController.current.spellBombDefault,this.transform);
+                        if(PlayerStats.current.currentMana >= s.manacost)
+                        {
+                            PlayerStats.current.currentMana -= s.manacost;
+                            ProjectileController.current.SpawnProjectile(projSpawner, ProjectileController.current.spellBombDefault,this.transform);
+                        }
+                        if(PlayerStats.current.currentMana < s.manacost)
+                        {
+                            Debug.Log("not enough mana you poor");
+                        }
                     }
                     return s.name;
                 }
@@ -236,6 +252,8 @@ public class Spell
 {
     public int points;
     public string name;
+
+    public int manacost;
     public test[] tests;
 }
 [System.Serializable]

@@ -51,6 +51,8 @@ public class DungeonManager : MonoBehaviour
         AssignRoomTypes();
 
         roomBuilderSC.BuildDungeon(rooms);
+
+        
     }
     
     public void NewRoom(RoomNode room)

@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 4014792801158639044}
     - target: {fileID: 479361978815120227, guid: 8b10d04c46d4b3642b6b49ef1d9d0f81, type: 3}
       propertyPath: holdThreshold
-      value: 250
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 479361978815120227, guid: 8b10d04c46d4b3642b6b49ef1d9d0f81, type: 3}
       propertyPath: holdthreshold
@@ -77,11 +77,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3682885131627197370, guid: 8b10d04c46d4b3642b6b49ef1d9d0f81, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.141
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 3682885131627197370, guid: 8b10d04c46d4b3642b6b49ef1d9d0f81, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.035
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3682885131627197370, guid: 8b10d04c46d4b3642b6b49ef1d9d0f81, type: 3}
       propertyPath: m_LocalPosition.z
@@ -122,6 +122,10 @@ PrefabInstance:
     - target: {fileID: 6228421204920443735, guid: 8b10d04c46d4b3642b6b49ef1d9d0f81, type: 3}
       propertyPath: m_Name
       value: Bow Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6228421204920443735, guid: 8b10d04c46d4b3642b6b49ef1d9d0f81, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6228421204920443735, guid: 8b10d04c46d4b3642b6b49ef1d9d0f81, type: 3}
       propertyPath: m_TagString

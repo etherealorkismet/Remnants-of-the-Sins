@@ -34,7 +34,7 @@ public class KeybindManager : MonoBehaviour
         }
         if (Input.GetKeyDown(TestButton2))
         {
-            Inventory.current.AddItem(1);
+            PlayerStats.current.TakeDamage(20);
         }
     }
 }

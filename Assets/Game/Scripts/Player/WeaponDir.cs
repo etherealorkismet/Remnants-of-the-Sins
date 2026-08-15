@@ -10,10 +10,13 @@ public class WeaponDir : MonoBehaviour
     public GameObject currentWeapon = null;
     public GameObject WeaponSlot1; //temp!!!!!!!!!!!!!!!! prefab of the sword
     public GameObject WeaponSlot2; //bow goes here
+    public static WeaponDir current;
 
-    
 
-
+    void Awake()
+    {
+        current = this;
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -57,9 +60,8 @@ public class WeaponDir : MonoBehaviour
         {
             currentWeapon = GameObject.Instantiate(Weapon,this.transform);//temp!!!!!!!!!!!!!!!! create teh weapon (sword)
         }
-        if(currentWeapon.tag != Weapon.tag)
+        if(currentWeapon.layer != Weapon.layer)
         {
-            //Debug.Log("wiaubda");
             RemoveOldWeapon();
             GameObject weapon = GameObject.Instantiate(Weapon,this.transform);//temp!!!!!!!!!!!!!!!! create teh weapon (sword)
             currentWeapon = weapon;

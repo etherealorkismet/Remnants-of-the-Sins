@@ -148,10 +148,41 @@ public class Inventory : MonoBehaviour
                 {
                     PlayerStats.current.maxHealth *= effect.value;
                 }
-                //logic, if players current hp is more than basehp after the items effect, 
-                if (PlayerStats.current.Currenthealth > PlayerStats.current.maxHealth)
+                //logic, if players current hp is more than maxhp after the items effect, 
+                if (PlayerStats.current.currentHealth > PlayerStats.current.maxHealth)
                 {
-                    PlayerStats.current.Currenthealth = PlayerStats.current.maxHealth;
+                    PlayerStats.current.currentHealth = PlayerStats.current.maxHealth;
+                }
+
+                break;
+
+            case "mana":
+
+                if (effect.type == "flat")
+                {
+                    PlayerStats.current.maxHealth += effect.value;
+                }
+                else if (effect.type == "multiplier")
+                {
+                    PlayerStats.current.maxHealth *= effect.value;
+                }
+                //logic, if players current mana is more than maxmana after the items effect, 
+                if (PlayerStats.current.currentMana > PlayerStats.current.maxMana)
+                {
+                    PlayerStats.current.currentMana = PlayerStats.current.maxMana;
+                }
+
+                break;
+
+            case "manaregen":
+
+                if (effect.type == "flat")
+                {
+                    PlayerStats.current.baseManaRegen += effect.value;
+                }
+                else if (effect.type == "multiplier")
+                {
+                    PlayerStats.current.ManaRegen *= effect.value;
                 }
 
                 break;

@@ -29,6 +29,11 @@
           "stat": "damage",
           "type": "flat",
           "value": 10
+        },
+        {
+          "stat": "mana",
+          "type": "flat",
+          "value": 5
         }
       ]
     },
@@ -66,6 +71,11 @@
           "stat": "damage",
           "type": "flat",
           "value": -3
+        },
+        {
+          "stat": "mana",
+          "type": "flat",
+          "value": 15
         }
       ]
     },
@@ -87,6 +97,11 @@
           "stat": "speed",
           "type": "flat",
           "value": 2
+        },
+        {
+          "stat": "manaregen",
+          "type": "multiplier",
+          "value": 0.95
         }
       ]
     },
@@ -103,6 +118,16 @@
           "stat": "damage",
           "type": "flat",
           "value": -5
+        },
+        {
+          "stat": "mana",
+          "type": "multiplier",
+          "value": 0.95
+        },
+        {
+          "stat": "manaregen",
+          "type": "flat",
+          "value": 0.05
         }
       ]
     },
@@ -139,13 +164,18 @@
         {
           "stat": "critChance",
           "type": "multiplier",
-          "value": 0.8
+          "value": 1.05
+        },
+        {
+          "stat": "mana",
+          "type": "mult",
+          "value": 0.65
         }
       ]
     },
     {
       "id": "8",
-      "name": "137-Paged Magazine",
+      "name": "53-Paged Magazine",
       "effects": [
         {
           "stat": "health",
@@ -176,6 +206,11 @@
           "stat": "speed",
           "type": "multiplier",
           "value": 0.9
+        },
+        {
+          "stat": "manaregen",
+          "type": "flat",
+          "value": -0.15
         }
       ]
     },
@@ -202,6 +237,11 @@
           "stat": "speed",
           "type": "multiplier",
           "value": 0.85
+        },
+        {
+          "stat": "manaregen",
+          "type": "flat",
+          "value": -0.1
         }
       ]
     },
@@ -233,12 +273,17 @@
         {
           "stat": "speed",
           "type": "multiplier",
-          "value": 1.75
+          "value": 1.25
         },
         {
           "stat": "health",
           "type": "multiplier",
           "value": 0.85
+        },
+        {
+          "stat": "manaregen",
+          "type": "multiplier",
+          "value": 1.05
         }
       ]
     },
@@ -270,6 +315,16 @@
           "stat": "attackSpeed",
           "type": "flat",
           "value": 0.25
+        },
+        {
+          "stat": "mana",
+          "type": "flat",
+          "value": -10
+        },
+        {
+          "stat": "manaregen",
+          "type": "multiplier",
+          "value": 0.9
         }
       ]
     },
@@ -296,6 +351,11 @@
           "stat": "health",
           "type": "flat",
           "value": 50
+        },
+        {
+          "stat": "manaregen",
+          "type": "flat",
+          "value": -0.1
         }
       ]
     },
@@ -348,7 +408,7 @@
         {
           "stat": "speed",
           "type": "multiplier",
-          "value": 2.2
+          "value": 1.65
         }
       ]
     },

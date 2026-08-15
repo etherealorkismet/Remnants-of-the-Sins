@@ -49,10 +49,6 @@ public class DoorToRoom : MonoBehaviour
                 //Debug.Log("down");
                 playerposition += down;
             }
-            //Debug.Log("end");
-            Debug.Log(this.gameObject.tag);
-            Debug.Log(oldPosition);
-            Debug.Log(playerposition);
             Playermovement.current.UpdatePos(playerposition);
             StartCoroutine(CameraPan(oldPosition, playerposition));
         }

@@ -30,7 +30,7 @@ public class ProjectileProperties : MonoBehaviour
             {
                 chargeTime = ProjectileController.current.weaponCharge;
                 maxChargeTime = ProjectileController.current.weaponMaxCharge;
-                dmg = playerStatsSC.damage * (1 + (chargeTime/maxChargeTime)/2);
+                dmg = playerStatsSC.damage * (0.5f + (chargeTime/maxChargeTime));
             }
         }
         transform.SetParent(null);
@@ -38,7 +38,7 @@ public class ProjectileProperties : MonoBehaviour
 
     void Update()
     {
-        rb.MovePosition((Vector3)dir / 10 + transform.position);
+        rb.MovePosition((Vector3)dir / 7 + transform.position);
     }
 
     // Update is called once per frame

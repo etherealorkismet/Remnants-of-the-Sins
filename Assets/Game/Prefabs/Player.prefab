@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6949124888770649726}
   - component: {fileID: 98572812661408805}
   - component: {fileID: 4337390250342206116}
-  m_Layer: 6
+  m_Layer: 30
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 723a70f67114b7440a3194529dacda0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  baseHealth: 100
+  maxHealth: 100
   baseDamage: 30
   baseAttackSpeed: 1
   baseSpeed: 0.25
@@ -220,6 +220,9 @@ MonoBehaviour:
   speed: 50
   critChance: 0
   critDamage: 0
+  canBeDamaged: 1
+  immunityTime: 25
+  timeElapsed: 0
 --- !u!114 &4337390250342206116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,4 +238,5 @@ MonoBehaviour:
   inventoryBar: {fileID: 0}
   toggleInventory: 0
   itemJSON: {fileID: 4900000, guid: 57e79149381aeb8409ec1187b94c166f, type: 3}
-  heldItems: []
+  NumberOfItems: 0
+  heldItems: 

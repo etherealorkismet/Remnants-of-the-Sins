@@ -19,44 +19,43 @@ public class RoomBuilder : MonoBehaviour
             baseRoom,
             node.transform.position,
             Quaternion.identity,
-            node.transform);
+            node.transform
+        );
 
         RoomVisual visual = room.GetComponent<RoomVisual>();
 
-        // LEFT
-        visual.leftDoor.SetActive(node.exits[0]);
-        visual.leftWall.SetActive(!node.exits[0]);
+        if (node.roomtype == RoomType.Start || node.cleared)
+        {
+            visual.BuildExits(node);
+        }
+        else
+        {
+            visual.LockRoom();
+        }
 
-        // UP
-        visual.upDoor.SetActive(node.exits[1]);
-        visual.upWall.SetActive(!node.exits[1]);
-
-        // RIGHT
-        visual.rightDoor.SetActive(node.exits[2]);
-        visual.rightWall.SetActive(!node.exits[2]);
-
-        // DOWN
-        visual.downDoor.SetActive(node.exits[3]);
-        visual.downWall.SetActive(!node.exits[3]);
-
-        switch (node.roomtype) //room creation
+        switch (node.roomtype)
         {
             case RoomType.Start:
                 Instantiate(visual.playerPrefab, visual.playerSpawn.position, Quaternion.identity);
-                Instantiate(visual.dummyPrefab, visual.dummySpawn.position, Quaternion.identity);
+                Instantiate(visual.dummyPrefab, visual.dummySpawn.position, Quaternion.identity, this.transform);
                 break;
+
 
             case RoomType.Normal:
-                visual.SpawnEnemies();
+                visual.SpawnEnemies(node);
                 break;
+
 
             case RoomType.Treasure:
-                Instantiate(visual.chestPrefab, visual.treasureSpawn.position, Quaternion.identity);
+                visual.SpawnItems();
+                Instantiate(visual.swordPrefab, visual.swordSpawn.position, Quaternion.identity, this.transform);
+                Instantiate(visual.bowPrefab, visual.bowSpawn.position, Quaternion.identity, this.transform);
                 break;
-
             case RoomType.Boss:
-                Instantiate(visual.bossPrefab, visual.bossSpawn.position, Quaternion.identity);
+
+                Instantiate(visual.bossPrefab, visual.bossSpawn.position, Quaternion.identity, node.transform );
                 break;
         }
     }
+        
 }
