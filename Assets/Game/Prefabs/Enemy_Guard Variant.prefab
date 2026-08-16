@@ -9,12 +9,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1137263957899045056, guid: 62f7d564f816a6f429f60f89c75bec4a, type: 3}
+      propertyPath: attackInterval
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137263957899045056, guid: 62f7d564f816a6f429f60f89c75bec4a, type: 3}
       propertyPath: distanceThreshold
       value: 3.67
       objectReference: {fileID: 0}
     - target: {fileID: 1394018189867780244, guid: 62f7d564f816a6f429f60f89c75bec4a, type: 3}
       propertyPath: m_Name
       value: Enemy_Guard Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221044506877771081, guid: 62f7d564f816a6f429f60f89c75bec4a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221044506877771081, guid: 62f7d564f816a6f429f60f89c75bec4a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 2221044506877771081, guid: 62f7d564f816a6f429f60f89c75bec4a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -76,6 +88,10 @@ PrefabInstance:
       propertyPath: health
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 6890070543700868958, guid: 62f7d564f816a6f429f60f89c75bec4a, type: 3}
+      propertyPath: potionPrefab
+      value: 
+      objectReference: {fileID: 6070817740247359055, guid: 8b03ef237fa70cc4b97593b693d20f0e, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

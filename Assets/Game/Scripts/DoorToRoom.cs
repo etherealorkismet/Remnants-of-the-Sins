@@ -50,7 +50,50 @@ public class DoorToRoom : MonoBehaviour
                 playerposition += down;
             }
             Playermovement.current.UpdatePos(playerposition);
-            StartCoroutine(CameraPan(oldPosition, playerposition));
+
+            RoomNode currentRoom = GetComponentInParent<RoomNode>();
+
+            if (currentRoom != null)
+            {
+                Vector2 newGridPosition = currentRoom.gridPosition;
+
+                if (this.gameObject.CompareTag("LeftDoor"))
+                {
+                    newGridPosition += Vector2.left;
+                }
+
+                if (this.gameObject.CompareTag("UpDoor"))
+                {
+                    newGridPosition += Vector2.up;
+                }
+
+                if (this.gameObject.CompareTag("RightDoor"))
+                {
+                    newGridPosition += Vector2.right;
+                }
+
+                if (this.gameObject.CompareTag("DownDoor"))
+                {
+                    newGridPosition += Vector2.down;
+                }
+
+                RoomNode[] rooms = FindObjectsByType<RoomNode>();
+
+                foreach (RoomNode room in rooms)
+                {
+                    if (room.gridPosition == newGridPosition)
+                    {
+                        RoomVisual visual = room.GetComponentInChildren<RoomVisual>();
+
+                        if (visual != null)
+                        {
+                            CameraFollow.current.SetCameraLimits(visual);
+                        }
+
+                        break;
+                    }
+                }
+            }
         }
     }
 
@@ -88,5 +131,25 @@ public class DoorToRoom : MonoBehaviour
 
         CameraFollow.current.cameraUpdate = true;
         Playermovement.current.canMove = true;
+    }
+
+    RoomNode FindRoomAtPosition(Vector2 position)
+    {
+        RoomNode[] rooms = FindObjectsByType<RoomNode>();
+
+        foreach (RoomNode room in rooms)
+        {
+            if (Vector2.Distance(room.transform.position, position) < 1f)
+            {
+                return room;
+            }
+        }
+
+        return null;
+    }
+
+    RoomNode GetCurrentRoom()
+    {
+        return GetComponentInParent<RoomNode>();
     }
 }

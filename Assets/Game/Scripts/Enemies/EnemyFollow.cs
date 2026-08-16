@@ -9,6 +9,9 @@ public class EnemyFollow : MonoBehaviour
     GameObject player;
     EnemyStats enemyStatsSC;
 
+    public bool canattack = true;
+    public float attackInterval = 15f;
+    public float attackTimer;
     public float distanceThreshold = 4f;
     public float attackRange = 1f;
     public bool inRange = false;
@@ -24,28 +27,33 @@ public class EnemyFollow : MonoBehaviour
     void Update()
     {
         // Calculate distance between enemy and player
-        distanceBetween = Vector2.Distance(
-            transform.position,
-            player.transform.position
-        );
+        distanceBetween = Vector2.Distance(transform.position, player.transform.position);
 
         // Check if player is within attack range
         inRange = CheckRange();
-
-        // Damage player if in attack range
-        CanDamagePlayer();
-
+        if (!canattack && attackTimer > 0)
+        {
+            attackTimer -= 0.1f;            
+        }
+        if (!canattack && attackTimer <0)
+        {
+            canattack = true;
+        }
+        if (canattack)
+        {
+            // Damage player if in attack range
+            CanDamagePlayer();
+        }
+        
+        
         // Follow player if outside attack range
         if (!inRange && distanceBetween < distanceThreshold)
         {
             Vector2 direction = player.transform.position - transform.position;
-
             // Convert direction into one of 8 directions
             direction = Get8Direction(direction);
-
             // Move enemy
-            transform.position +=
-                (Vector3)(direction * enemyStatsSC.speed * Time.deltaTime);
+            transform.position += (Vector3)(direction * enemyStatsSC.speed * Time.deltaTime);
         }
     }
 
@@ -114,10 +122,7 @@ public class EnemyFollow : MonoBehaviour
 
     private void CanDamagePlayer()
     {
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(
-            transform.position,
-            attackRange
-        );
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
 
         foreach (Collider2D hit in hitColliders)
         {
@@ -127,7 +132,10 @@ public class EnemyFollow : MonoBehaviour
 
                 if (playerStats != null)
                 {
+                    Debug.Log("hi i attack you and you took dmg btw");
                     playerStats.TakeDamage(enemyStatsSC.damage);
+                    canattack = false;
+                    attackTimer = attackInterval;
                 }
             }
         }

@@ -80,7 +80,16 @@ public class WeaponDir : MonoBehaviour
         float angle = (float)(Math.Atan2(direction.y, direction.x) * (180f/Math.PI));
 
         currentWeapon.transform.localPosition = direction.normalized * distance;
-        currentWeapon.transform.rotation = Quaternion.Euler(0,0,angle);
+        
+
+        if (direction.x < 0)
+        {
+            currentWeapon.transform.rotation = Quaternion.Euler(180,0,-angle);
+        }
+        else
+        {
+            currentWeapon.transform.rotation = Quaternion.Euler(0,0,angle);
+        }
     }
 
     public bool UseWeapon()//attack script

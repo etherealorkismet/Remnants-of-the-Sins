@@ -37,19 +37,19 @@ public class Playermovement : MonoBehaviour
                 moveInput = Vector2.zero;
 
                 // Up
-                if (Input.GetKey(KeybindManager.keybind.MoveForward) || Input.GetKey(KeybindManager.keybind.AltMoveForward))
+                if (Input.GetKey(KeybindManager.keybind.MoveForward))
                     moveInput.y += 1f;
 
                 // Down
-                if (Input.GetKey(KeybindManager.keybind.MoveDown) || Input.GetKey(KeybindManager.keybind.AltMoveDown))
+                if (Input.GetKey(KeybindManager.keybind.MoveDown))
                     moveInput.y -= 1f;
 
                 // Left
-                if (Input.GetKey(KeybindManager.keybind.MoveLeft) || Input.GetKey(KeybindManager.keybind.AltMoveLeft))
+                if (Input.GetKey(KeybindManager.keybind.MoveLeft))
                     moveInput.x -= 1f;
 
                 // Right
-                if (Input.GetKey(KeybindManager.keybind.MoveRight) || Input.GetKey(KeybindManager.keybind.MoveRight))
+                if (Input.GetKey(KeybindManager.keybind.MoveRight))
                     moveInput.x += 1f;
 
                 // Prevent faster diagonal movement

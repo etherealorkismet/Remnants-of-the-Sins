@@ -6,7 +6,7 @@ public class EnemyStats : MonoBehaviour
     float currentHealth;
     public float speed = 2f;
     public float damage = 10f;
-
+    public GameObject potionPrefab;
     void Start()
     {
         currentHealth = health;
@@ -17,6 +17,11 @@ public class EnemyStats : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
+            int chance = Random.Range(0,101);
+            if(chance >= 50)
+            {
+                Instantiate(potionPrefab, transform.position, transform.rotation);
+            }
             Destroy(gameObject);
         }
     }

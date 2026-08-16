@@ -7,7 +7,7 @@ public class PlayerStats : MonoBehaviour
     [Header("Base Stats")]
     public float maxHealth = 100f;
     public float maxMana = 100f;
-    public float baseManaRegen = 1f;
+    public float baseManaRegen = 5f;
     public float baseDamage = 30f;
     public float baseAttackSpeed = 1f;
     public float baseSpeed = 0.25f;
@@ -28,8 +28,8 @@ public class PlayerStats : MonoBehaviour
     public float immunityTime = 25f;
     public float immunityTimer;
 
-    public bool canRegenMana = false;
-    public float regenInterval = 25f;
+    public bool canRegenMana = true;
+    public float regenInterval = 3f;
     public float regenTimer;
 
     public static PlayerStats current;
@@ -38,12 +38,13 @@ public class PlayerStats : MonoBehaviour
         current = this;
         currentHealth = maxHealth;
         currentMana = maxMana;
-        baseManaRegen = ManaRegen;
+        ManaRegen = baseManaRegen;
         damage = baseDamage;
         attackSpeed = baseAttackSpeed;
         speed = baseSpeed;
         critChance = baseCritChance;
         critDamage = baseCritDamage;
+        StartCoroutine(ManaRegeneration());
     }
 
     void Update()
@@ -57,8 +58,8 @@ public class PlayerStats : MonoBehaviour
             canBeDamaged = true;
             immunityTimer = immunityTime;
         }
-
-        if (!canRegenMana)
+    /*
+        if (!canRegenMana && regenTimer <= regenInterval)
         {
             regenTimer -= 0.1f;
         }
@@ -66,16 +67,48 @@ public class PlayerStats : MonoBehaviour
         {
             canRegenMana = true;
             regenTimer = regenInterval;
+            RegenMana();
+        }*/   
+    }
+
+    IEnumerator ManaRegeneration()
+    {
+        while (true)
+        {
+            if (canRegenMana)
+            {
+                if (currentMana < maxMana)
+                {
+                    currentMana += ManaRegen;
+
+                    // Make sure mana doesn't go above max
+                    if (currentMana > maxMana)
+                    {
+                        currentMana = maxMana;
+                    }
+                }
+                else
+                {
+                    canRegenMana = false;
+                    regenTimer = 0f;
+                }
+            }
+            else
+            {
+                regenTimer += 0.1f;
+
+                if (regenTimer >= regenInterval)
+                {
+                    canRegenMana = true;
+                    regenTimer = 0f;
+                }
+            }
+
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
-    public void RegenMana()
-    {
-        if (canRegenMana)
-        {
-            
-        }
-    }
+    
 
     public void TakeDamage(float damage)
     {
@@ -84,9 +117,12 @@ public class PlayerStats : MonoBehaviour
             canBeDamaged = false;
             immunityTimer = immunityTime;
             currentHealth -= damage;
+            SinModifier.current.damageTaken += damage;
+            SinModifier.current.updating = true;
             if(currentHealth <= 0)
             {
                 Debug.Log("You dead lol");
+                UnityEditor.EditorApplication.isPlaying = false;
             }
         }
     }

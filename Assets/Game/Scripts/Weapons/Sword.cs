@@ -15,6 +15,10 @@ public class Sword : MonoBehaviour, Weapon
             CheckGizmoCollision();
             canAttack = false;
         }
+        else
+        {
+            Debug.Log("Attack on Cooldown");
+        }
         return true;
     }
     public bool HoldToUseMD()

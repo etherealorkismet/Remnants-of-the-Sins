@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class RoomVisual : MonoBehaviour
 {
+    [Header("Camera Limits")]
+    public Transform leftCameraLimit;
+    public Transform rightCameraLimit;
+    public Transform topCameraLimit;
+    public Transform bottomCameraLimit;
+
     [Header("Doors")]
     public GameObject leftDoor;
     public GameObject upDoor;
